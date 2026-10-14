@@ -1,0 +1,27 @@
+cat << 'EOF' > .gitignore
+# PyCharm и настройки IDE
+.idea/
+*.iws
+*.iml
+
+# Виртуальное окружение Python
+.venv/
+venv/
+ENV/
+env/
+
+# Кэш Python и скомпилированные файлы
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+
+# Файлы окружения (переменные среды с паролями/токенами)
+.env
+*.env
+
+# Системные файлы
+.DS_Store
+Thumbs.db
+EOF
