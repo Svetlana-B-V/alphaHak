@@ -1,8 +1,8 @@
-cat << 'EOF' > .gitignore
 # PyCharm и настройки IDE
 .idea/
 *.iws
 *.iml
+.vscode/
 
 # Виртуальное окружение Python
 .venv/
@@ -16,12 +16,20 @@ __pycache__/
 *.pyo
 *.pyd
 .pytest_cache/
+.coverage
+htmlcov/
 
 # Файлы окружения (переменные среды с паролями/токенами)
 .env
 *.env
+# но шаблон с примером переменных коммитим
+!.env.example
+
+# Локальные базы данных (SQLite)
+*.db
+*.sqlite
+*.sqlite3
 
 # Системные файлы
 .DS_Store
 Thumbs.db
-EOF
