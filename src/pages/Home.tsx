@@ -18,14 +18,28 @@ export default function Home() {
           </div>
           <nav className="flex items-center gap-6">
             <Link
+              to="/dashboard"
+              className="text-sm text-text-secondary hover:text-primary transition-colors"
+            >
+              Дашборд
+            </Link>
+            <Link
+              to="/analyze"
+              className="text-sm text-text-secondary hover:text-primary transition-colors"
+            >
+              Проверить новость
+            </Link>
+            <Link
               to="/showcase"
               className="text-sm text-text-secondary hover:text-primary transition-colors"
             >
               UI-Kit
             </Link>
-            <Button size="sm" variant="primary">
-              Войти
-            </Button>
+            <Link to="/dashboard">
+              <Button size="sm" variant="primary">
+                Войти
+              </Button>
+            </Link>
           </nav>
         </div>
       </header>
@@ -49,14 +63,21 @@ export default function Home() {
           </div>
 
           <div className="flex flex-wrap justify-center gap-3">
-            <Link to="/showcase">
+            <Link to="/dashboard">
               <Button size="lg" className="bg-white text-primary hover:bg-white/90 shadow-lg">
-                Посмотреть компоненты →
+                Перейти к дашборду →
               </Button>
             </Link>
-            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary">
-              Документация
-            </Button>
+            <Link to="/analyze">
+              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary">
+                Проверить новость
+              </Button>
+            </Link>
+            <Link to="/showcase">
+              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary">
+                UI-Kit
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
@@ -108,15 +129,15 @@ export default function Home() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             <div>
               <div className="text-3xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                3
+                4
               </div>
               <div className="text-sm text-text-secondary mt-1">Компонента</div>
             </div>
             <div>
               <div className="text-3xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                2
+                5
               </div>
-              <div className="text-sm text-text-secondary mt-1">Страницы</div>
+              <div className="text-sm text-text-secondary mt-1">Страниц</div>
             </div>
             <div>
               <div className="text-3xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
@@ -126,9 +147,9 @@ export default function Home() {
             </div>
             <div>
               <div className="text-3xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                9
+                REST API
               </div>
-              <div className="text-sm text-text-secondary mt-1">Документов</div>
+              <div className="text-sm text-text-secondary mt-1">Интеграция</div>
             </div>
           </div>
         </Card>

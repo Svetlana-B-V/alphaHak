@@ -10,8 +10,7 @@
     "esModuleInterop": true,
     "isolatedModules": true,
     "noEmit": true,
-    "allowImportingTsExtensions": true,
-    "types": ["vite/client"]
+    "allowImportingTsExtensions": true
   },
   "include": ["src"]
 }

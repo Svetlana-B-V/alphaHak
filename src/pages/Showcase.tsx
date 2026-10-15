@@ -25,6 +25,12 @@ export default function Showcase() {
           </div>
           <nav className="flex items-center gap-6">
             <Link
+              to="/dashboard"
+              className="text-sm text-text-secondary hover:text-primary transition-colors"
+            >
+              Дашборд
+            </Link>
+            <Link
               to="/"
               className="text-sm text-text-secondary hover:text-primary transition-colors"
             >

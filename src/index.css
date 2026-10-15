@@ -37,6 +37,11 @@
   --color-text-secondary: #525252;
   --color-text-hint: #A3A3A3;
 
+  /* Алиасы для совместимости с примерами из forfrontend.md */
+  --color-yandex-text-primary: #171717;
+  --color-yandex-text-secondary: #525252;
+  --color-yandex-text-hint: #A3A3A3;
+
   /* Границы */
   --color-border: #E5E5E5;
   --color-border-hover: #D4D4D4;

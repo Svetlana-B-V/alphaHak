@@ -1,75 +1,40 @@
-# React + TypeScript + Vite
+# 🚀 Инсайт-Радар (Панель руководителя) — Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Интерфейс дашборда руководителя для оперативного мониторинга новостей, анализа их влияния на компанию и получения персональных рекомендаций от ИИ-агента[cite: 2, 7]. Проект разработан на React + TypeScript и стилизован с использованием дизайн-системы на Tailwind CSS.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🛠 Технологический стек
 
-## React Compiler
+* **Фреймворк:** React 18 (SPA)[cite: 10]
+* **Язык:** TypeScript 5[cite: 10]
+* **Сборщик:** Vite 6[cite: 10]
+* **Стилизация:** Tailwind CSS 4[cite: 10]
+* **Роутинг:** React Router DOM v6[cite: 10]
+* **Иконки и утилиты:** date-fns, lucide-react[cite: 10]
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 📁 Структура проекта
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
-```
-
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
-```
+```text
+src/
+├── api/                # Сетевой слой: клиент запросов к FastAPI (client.ts)
+├── assets/             # Графические ресурсы, иконки, логотипы[cite: 10]
+├── components/         # Переиспользуемые UI-компоненты:
+│   ├── Badge.tsx       # Бейджи статусов и уровней важности[cite: 4]
+│   ├── Button.tsx      # Кнопки с вариантами (primary, secondary, outline, ghost)[cite: 5]
+│   ├── Card.tsx        # Карточки с субкомпонентами (Header, Content, Footer)[cite: 6]
+│   └── InsightCard.tsx # Карточка инсайта с фидбеком и градацией важности
+├── hooks/              # Пользовательские хуки (useNews.ts)
+├── pages/              # Маршруты и экраны:
+│   ├── Home.tsx        # Промо-страница с обзором возможностей[cite: 2]
+│   ├── Dashboard.tsx   # Основной дашборд с лентой инсайтов
+│   ├── NewsDetail.tsx  # Детальный просмотр конкретной новости (/news/:id)
+│   ├── Analyze.tsx     # Интерактивная проверка новости через ИИ-агента
+│   └── Showcase.tsx    # Витрина компонентов UI-Kit[cite: 3]
+├── types/              # Типы TypeScript для API и моделей данных (api.ts)[cite: 7]
+├── utils/              # Вспомогательные функции (badges.ts)
+├── App.tsx             # Конфигурация маршрутов[cite: 10]
+├── index.css           # Цветовая палитра, переменные темы и утилиты[cite: 1]
+└── main.tsx            # Точка монтирования React-приложения[cite: 10]
