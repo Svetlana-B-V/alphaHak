@@ -9,11 +9,11 @@ interface BadgeProps {
 }
 
 const variantStyles: Record<BadgeVariant, string> = {
-  default: 'bg-yandex-gray text-yandex-text-primary border border-yandex-border',
-  success: 'bg-green-50 text-green-700 border border-green-200',
-  warning: 'bg-yandex-yellow/20 text-yellow-800 border border-yandex-yellow',
-  error: 'bg-red-50 text-red-700 border border-red-200',
-  info: 'bg-blue-50 text-blue-700 border border-blue-200',
+  default: 'bg-gray-100 text-text-primary border border-border',
+  success: 'bg-emerald-50 text-emerald-700 border border-emerald-200',
+  warning: 'bg-amber-50 text-amber-700 border border-amber-200',
+  error: 'bg-rose-50 text-rose-700 border border-rose-200',
+  info: 'bg-violet-50 text-violet-700 border border-violet-200',
 };
 
 export default function Badge({

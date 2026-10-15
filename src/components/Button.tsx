@@ -11,13 +11,13 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 
 const variantStyles: Record<ButtonVariant, string> = {
   primary:
-    'bg-yandex-yellow text-yandex-black hover:bg-yandex-yellow-hover active:bg-yandex-yellow-active font-semibold',
+    'bg-primary text-white hover:bg-primary-hover active:bg-primary-active font-semibold shadow-sm hover:shadow-md',
   secondary:
-    'bg-yandex-black text-yandex-white hover:bg-gray-800 active:bg-gray-900 font-semibold',
+    'bg-secondary text-white hover:bg-secondary-hover active:bg-secondary-active font-semibold shadow-sm hover:shadow-md',
   outline:
-    'border-2 border-yandex-black text-yandex-black bg-transparent hover:bg-yandex-black hover:text-yandex-white font-medium',
+    'border-2 border-primary text-primary bg-transparent hover:bg-primary hover:text-white font-medium',
   ghost:
-    'text-yandex-text-primary bg-transparent hover:bg-yandex-gray font-medium',
+    'text-text-primary bg-transparent hover:bg-gray-100 font-medium',
 };
 
 const sizeStyles: Record<ButtonSize, string> = {
@@ -39,7 +39,7 @@ export default function Button({
         inline-flex items-center justify-center
         transition-all duration-150 ease-in-out
         cursor-pointer select-none
-        focus:outline-none focus:ring-2 focus:ring-yandex-yellow focus:ring-offset-2
+        focus:outline-none focus:ring-2 focus:ring-primary/50 focus:ring-offset-2
         disabled:opacity-50 disabled:cursor-not-allowed
         ${variantStyles[variant]}
         ${sizeStyles[size]}

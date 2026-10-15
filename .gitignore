@@ -48,3 +48,10 @@ coverage
 # OS files
 Thumbs.db
 Desktop.ini
+
+back
+eslint.config.js
+tsconfig.app.json
+public
+tsconfig.node.json
+src/assets
