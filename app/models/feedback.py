@@ -12,9 +12,11 @@ class Feedback(Base):
 
     id: Mapped[int] = mapped_column(primary_key=True)
     # К какой новости относится оценка
-    news_id: Mapped[int] = mapped_column(ForeignKey("news.id"))
+    news_id: Mapped[int] = mapped_column(ForeignKey("news.id", ondelete="CASCADE"), index=True)
     # Если оценивают конкретный вывод ИИ - указываем его, иначе None
-    insight_id: Mapped[int | None] = mapped_column(ForeignKey("insights.id"), default=None)
+    insight_id: Mapped[int | None] = mapped_column(
+        ForeignKey("insights.id", ondelete="CASCADE"), index=True, default=None
+    )
     # True = лайк, False = дизлайк
     is_like: Mapped[bool]
     created_at: Mapped[datetime] = mapped_column(server_default=func.now())

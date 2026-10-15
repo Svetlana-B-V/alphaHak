@@ -1,50 +1,29 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+from app.config import settings
+from app.routers import feedback, news
+
 app = FastAPI(
     title="AlphaHak REST API",
-    description="Базовый REST API на FastAPI для хранения новостей и обратной связи",
-    version="1.0.0"
+    description="Бэкенд «Инсайт-Радара»: новости, выводы ИИ и обратная связь",
+    version="1.0.0",
 )
 
-# Настройка CORS (Пункт из ТЗ для интеграции с фронтендом)
+# CORS: разрешаем запросы только с адресов фронтенда из CORS_ORIGINS (.env)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # В продакшене замените на конкретные урлы фронтенда
+    allow_origins=settings.cors_origins_list,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# Заглушки (Mock эндпоинты) из вашего ТЗ
+app.include_router(news.router)
+app.include_router(feedback.router)
 
-@app.get("/api/v1/news")
-async def get_news_mock():
-    """Заглушка для получения списка новостей"""
-    return [
-        {
-            "id": 1,
-            "title": "Хакатон начался!",
-            "content": "Сегодня стартовал первый этап разработки...",
-            "created_at": "2026-10-14T15:00:00"
-        },
-        {
-            "id": 2,
-            "title": "Векторные базы данных",
-            "content": "Chroma DB будет интегрирована в ML-модуль позже.",
-            "created_at": "2026-10-14T15:30:00"
-        }
-    ]
 
-@app.post("/api/v1/feedback")
-async def post_feedback_mock(data: dict):
-    """Заглушка для отправки обратной связи (лайки/дизлайки)"""
-    return {
-        "status": "success",
-        "message": "Фидбек успешно принят (mock)",
-        "received_data": data
-    }
-
-@app.get("/")
-async def root():
-    return {"message": "Бэкенд работает. Перейдите на /docs для просмотра документации API"}
+@app.get("/", tags=["health"])
+def root():
+    """Проверка, что бэкенд работает."""
+    return {"message": "Бэкенд работает. Документация API: /docs"}
