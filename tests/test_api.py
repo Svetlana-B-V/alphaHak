@@ -45,6 +45,18 @@ def test_feedback_validation():
     assert client.post("/api/v1/feedback", json={"news_id": 1, "insight_id": 2, "is_like": True}).status_code == 404
 
 
+def test_analyze_returns_insight():
+    response = client.post("/api/v1/analyze", json={"title": "ЦБ снизил ключевую ставку", "content": "Решение совета директоров"})
+    assert response.status_code == 200
+    assert response.json()["importance_score"] == 8
+
+
+def test_analyze_noise_and_validation():
+    noise = client.post("/api/v1/analyze", json={"title": "Apple показала iPhone", "content": "Новая линейка"})
+    assert noise.json()["importance_score"] == 1
+    assert client.post("/api/v1/analyze", json={"title": "", "content": "текст"}).status_code == 422
+
+
 def test_cors_allows_frontend_only():
     preflight = {"Access-Control-Request-Method": "GET"}
     allowed = client.options("/api/v1/news", headers={"Origin": "http://localhost:5173", **preflight})

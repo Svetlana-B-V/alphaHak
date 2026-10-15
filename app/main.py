@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.config import settings
-from app.routers import feedback, news
+from app.routers import analyze, feedback, news
 
 app = FastAPI(
     title="AlphaHak REST API",
@@ -21,6 +21,7 @@ app.add_middleware(
 
 app.include_router(news.router)
 app.include_router(feedback.router)
+app.include_router(analyze.router)
 
 
 @app.get("/", tags=["health"])
