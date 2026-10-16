@@ -10,8 +10,8 @@ interface CardProps {
 const paddingStyles: Record<string, string> = {
   none: '',
   sm: 'p-4',
-  md: 'p-6',
-  lg: 'p-8',
+  md: 'p-6 md:p-7',
+  lg: 'p-8 md:p-10',
 };
 
 export default function Card({
@@ -23,12 +23,12 @@ export default function Card({
   return (
     <div
       className={`
-        bg-white
-        rounded-2xl
+        bg-white/95 backdrop-blur-sm
+        rounded-[28px]
         border border-border
         shadow-sm
         ${paddingStyles[padding]}
-        ${hoverable ? 'hover:shadow-xl hover:border-border-hover hover:-translate-y-0.5 transition-all duration-300 cursor-pointer' : ''}
+        ${hoverable ? 'layered-card hover:shadow-xl hover:border-primary/40 hover:-translate-y-1 transition-all duration-300' : ''}
         ${className}
       `}
     >
@@ -37,67 +37,31 @@ export default function Card({
   );
 }
 
-interface CardHeaderProps {
+interface CardSectionProps {
   children: React.ReactNode;
   className?: string;
 }
 
-export function CardHeader({ children, className = '' }: CardHeaderProps) {
-  return (
-    <div className={`mb-4 ${className}`}>
-      {children}
-    </div>
-  );
+export function CardHeader({ children, className = '' }: CardSectionProps) {
+  return <div className={`mb-4 ${className}`}>{children}</div>;
 }
 
-interface CardTitleProps {
-  children: React.ReactNode;
-  className?: string;
-}
-
-export function CardTitle({ children, className = '' }: CardTitleProps) {
+export function CardTitle({ children, className = '' }: CardSectionProps) {
   return (
-    <h3 className={`text-lg font-semibold text-text-primary ${className}`}>
+    <h3 className={`text-lg md:text-xl font-extrabold text-text-primary tracking-tight ${className}`}>
       {children}
     </h3>
   );
 }
 
-interface CardDescriptionProps {
-  children: React.ReactNode;
-  className?: string;
+export function CardDescription({ children, className = '' }: CardSectionProps) {
+  return <p className={`text-sm text-text-secondary mt-1.5 ${className}`}>{children}</p>;
 }
 
-export function CardDescription({ children, className = '' }: CardDescriptionProps) {
-  return (
-    <p className={`text-sm text-text-secondary mt-1 ${className}`}>
-      {children}
-    </p>
-  );
+export function CardContent({ children, className = '' }: CardSectionProps) {
+  return <div className={className}>{children}</div>;
 }
 
-interface CardContentProps {
-  children: React.ReactNode;
-  className?: string;
-}
-
-export function CardContent({ children, className = '' }: CardContentProps) {
-  return (
-    <div className={className}>
-      {children}
-    </div>
-  );
-}
-
-interface CardFooterProps {
-  children: React.ReactNode;
-  className?: string;
-}
-
-export function CardFooter({ children, className = '' }: CardFooterProps) {
-  return (
-    <div className={`mt-4 pt-4 border-t border-border ${className}`}>
-      {children}
-    </div>
-  );
+export function CardFooter({ children, className = '' }: CardSectionProps) {
+  return <div className={`mt-5 pt-4 border-t border-border ${className}`}>{children}</div>;
 }

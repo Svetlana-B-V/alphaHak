@@ -1,168 +1,220 @@
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import Navbar from '../components/Navbar';
+import LiveBackground from '../components/LiveBackground';
+import ConnectedStats from '../components/ConnectedStats';
 import Button from '../components/Button';
 import Card, { CardTitle, CardDescription } from '../components/Card';
+import Badge from '../components/Badge';
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="glass sticky top-0 z-20 border-b border-border">
-        <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl flex items-center justify-center font-bold text-white text-sm gradient-bg shadow-md">
-              Я
-            </div>
-            <span className="text-lg font-semibold text-text-primary">
-              Панель руководителя
-            </span>
-          </div>
-          <nav className="flex items-center gap-6">
-            <Link
-              to="/dashboard"
-              className="text-sm text-text-secondary hover:text-primary transition-colors"
-            >
-              Дашборд
-            </Link>
-            <Link
-              to="/analyze"
-              className="text-sm text-text-secondary hover:text-primary transition-colors"
-            >
-              Проверить новость
-            </Link>
-            <Link
-              to="/showcase"
-              className="text-sm text-text-secondary hover:text-primary transition-colors"
-            >
-              UI-Kit
-            </Link>
-            <Link to="/dashboard">
-              <Button size="sm" variant="primary">
-                Войти
-              </Button>
-            </Link>
-          </nav>
-        </div>
-      </header>
+    <div className="min-h-screen relative">
+      <LiveBackground />
+      <Navbar />
 
-      {/* Hero с градиентом */}
-      <section className="relative overflow-hidden">
-        <div className="gradient-bg absolute inset-0"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.15),transparent_50%)]"></div>
-        <div className="relative max-w-6xl mx-auto px-6 py-20 md:py-28">
-          <div className="text-center mb-12">
-            <div className="inline-block mb-4 px-4 py-1.5 rounded-full bg-white/20 backdrop-blur-sm text-white text-sm font-medium border border-white/30">
-              ✨ Новая версия v0.1.0
+      {/* Многослойный Hero-блок в стиле yaintern + референса 2 */}
+      <section className="max-w-6xl mx-auto px-4 md:px-6 pt-6 pb-16">
+        <div className="bg-white/90 backdrop-blur-md rounded-[40px] border border-border p-6 md:p-10 shadow-xl relative overflow-hidden">
+          {/* Верхняя расколотая типографика как на 2 фото */}
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+            <div>
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-gray-100 text-text-primary text-xs font-bold mb-3">
+                <span className="w-2 h-2 rounded-full bg-primary animate-ping" />
+                YANDEX INSIGHT RADAR v0.2
+              </div>
+              <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold font-display tracking-tight text-text-primary leading-[0.95]">
+                Управляй
+                <span className="block text-secondary">ИНСАЙТАМИ</span>
+              </h1>
             </div>
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 tracking-tight">
-              Аналитика для<br />руководителей
-            </h1>
-            <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto">
-              Дашборд с ключевыми метриками, инсайтами и данными в едином пространстве.
-              Быстрый доступ к важному.
-            </p>
+
+            <div className="md:text-right">
+              <div className="text-primary text-2xl mb-1">✦</div>
+              <div className="text-2xl sm:text-3xl md:text-5xl font-extrabold font-display tracking-tight text-text-primary leading-none">
+                ДЕЙСТВУЙ
+                <span className="block bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                  НА ОПЕРЕЖЕНИЕ
+                </span>
+              </div>
+            </div>
           </div>
 
-          <div className="flex flex-wrap justify-center gap-3">
-            <Link to="/dashboard">
-              <Button size="lg" className="bg-white text-primary hover:bg-white/90 shadow-lg">
-                Перейти к дашборду →
-              </Button>
-            </Link>
-            <Link to="/analyze">
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary">
-                Проверить новость
-              </Button>
-            </Link>
-            <Link to="/showcase">
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white hover:text-primary">
-                UI-Kit
-              </Button>
-            </Link>
-          </div>
+          {/* Внутренний цветной многослойный контейнер (как фиолетовый блок на 2 фото) */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.98 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
+            className="gradient-bg rounded-[32px] p-6 md:p-10 text-white relative overflow-hidden shadow-lg"
+          >
+            {/* Абстрактные декоративные круги внутри */}
+            <div className="absolute -right-12 -top-12 w-64 h-64 rounded-full bg-white/10 blur-2xl pointer-events-none" />
+            <div className="absolute right-1/4 -bottom-20 w-72 h-72 rounded-full bg-black/15 blur-2xl pointer-events-none" />
+
+            <div className="grid md:grid-cols-12 gap-8 items-center relative z-10">
+              <div className="md:col-span-7 space-y-5">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 backdrop-blur-sm text-xs font-bold border border-white/30">
+                  ✦ AI-аналитика для топ-менеджмента Яндекса
+                </div>
+
+                <h2 className="text-2xl md:text-4xl font-extrabold font-display leading-tight">
+                  От сырого потока новостей — к персональным решениям за секунды
+                </h2>
+
+                <p className="text-white/90 text-sm md:text-base max-w-xl leading-relaxed">
+                  ИИ-агент фильтрует информационный шум, оценивает влияние событий на
+                  долговую нагрузку, цепочки поставок и регуляторные риски Яндекса и
+                  предлагает готовые шаги.
+                </p>
+
+                <div className="flex flex-wrap items-center gap-3 pt-2">
+                  <Link to="/dashboard">
+                    <button className="px-6 py-3.5 rounded-full bg-gray-900 text-white font-bold text-sm inline-flex items-center gap-3 hover:bg-black transition-all shadow-lg cursor-pointer">
+                      <span>Открыть соты инсайтов</span>
+                      <span className="w-6 h-6 rounded-full border border-white/40 inline-flex items-center justify-center text-xs">
+                        →
+                      </span>
+                    </button>
+                  </Link>
+
+                  <Link to="/analyze">
+                    <button className="px-6 py-3.5 rounded-full bg-white/20 hover:bg-white/30 backdrop-blur-md text-white font-bold text-sm border border-white/40 transition-all cursor-pointer">
+                      Проверить свою новость
+                    </button>
+                  </Link>
+                </div>
+
+                {/* Плавающая стеклянная капсула снизу слева (как на 2 фото) */}
+                <div className="inline-flex items-center gap-3 px-4 py-2.5 rounded-2xl bg-white/15 backdrop-blur-md border border-white/25 mt-2">
+                  <div className="flex -space-x-2">
+                    <span className="w-7 h-7 rounded-full bg-primary text-white text-xs font-bold flex items-center justify-center border-2 border-white">
+                      CEO
+                    </span>
+                    <span className="w-7 h-7 rounded-full bg-secondary text-white text-xs font-bold flex items-center justify-center border-2 border-white">
+                      CFO
+                    </span>
+                    <span className="w-7 h-7 rounded-full bg-gray-900 text-white text-xs font-bold flex items-center justify-center border-2 border-white">
+                      AI
+                    </span>
+                  </div>
+                  <div className="text-xs leading-tight">
+                    <div className="font-bold">Фокус на главном</div>
+                    <div className="text-white/80">Оценка важности от 1 до 10</div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Многослойная карточка-превью справа (как карточка товара на 2 фото + графика с 1 фото) */}
+              <div className="md:col-span-5">
+                <div className="bg-white text-text-primary rounded-[28px] p-6 shadow-2xl border border-white/60 relative">
+                  <div className="flex items-center justify-between mb-3">
+                    <Badge variant="error">Критично · 9/10</Badge>
+                    <span className="text-xs font-bold text-text-hint">LIVE PREVIEW</span>
+                  </div>
+                  <div className="font-extrabold font-display text-lg mb-2">
+                    Снижение ключевой ставки ЦБ
+                  </div>
+                  <p className="text-xs text-text-secondary mb-4">
+                    Часть долга с плавающей ставкой дешевеет, открывается окно для рефинансирования.
+                  </p>
+                  <div className="p-3 rounded-2xl bg-gray-50 border border-border text-xs font-medium mb-4">
+                    <span className="text-primary font-bold block mb-0.5">
+                      ✦ Рекомендация ИИ:
+                    </span>
+                    Казначею: оценить рефинансирование через кредитную линию.
+                  </div>
+                  <Link to="/dashboard" className="block">
+                    <Button variant="secondary" size="sm" className="w-full">
+                      Перейти к полному отчёту →
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* Feature Cards */}
-      <section className="max-w-6xl mx-auto px-6 py-16 -mt-12 relative z-10">
-        <div className="grid md:grid-cols-3 gap-6 mb-12">
+      {/* Секция с абстрактными соединёнными блоками (как на 3 фото) */}
+      <section className="max-w-6xl mx-auto px-4 md:px-6 py-8">
+        <div className="text-center mb-8">
+          <Badge variant="info" className="mb-2">✦ Архитектура решения</Badge>
+          <h2 className="text-3xl md:text-5xl font-extrabold font-display text-text-primary">
+            Синергия данных и ИИ
+          </h2>
+        </div>
+
+        <ConnectedStats
+          stats={[
+            {
+              value: '10',
+              suffix: '/10',
+              label: 'Шкала скоринга критичности новостей для мгновенного отсева информационного шума',
+            },
+            {
+              value: '100%',
+              label: 'Привязка каждого вывода к профилю Яндекса: финансы, облака, e-com и инфраструктура',
+            },
+            {
+              value: '24/7',
+              label: 'Мониторинг и онлайн-анализ через ИИ-агента',
+            },
+          ]}
+        />
+      </section>
+
+      {/* Многослойные карточки преимуществ (в стиле 1 референса) */}
+      <section className="max-w-6xl mx-auto px-4 md:px-6 py-12">
+        <div className="grid md:grid-cols-3 gap-8">
           <Card hoverable>
-            <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 bg-gradient-to-br from-primary to-secondary shadow-md">
-              <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-              </svg>
+            <div className="flex items-center justify-between mb-4">
+              <div className="w-12 h-12 rounded-2xl gradient-bg flex items-center justify-center text-white font-bold text-xl shadow-md">
+                01
+              </div>
+              <span className="text-primary text-lg">✦</span>
             </div>
-            <CardTitle>Метрики</CardTitle>
+            <CardTitle>Сотовая матрица</CardTitle>
             <CardDescription>
-              Ключевые показатели эффективности в реальном времени
+              Удобное расположение инсайтов в форме пчелиных сот позволяет охватить взглядом сразу все критичные сигналы.
             </CardDescription>
           </Card>
 
           <Card hoverable>
-            <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 bg-gradient-to-br from-primary to-secondary shadow-md">
-              <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-              </svg>
+            <div className="flex items-center justify-between mb-4">
+              <div className="w-12 h-12 rounded-2xl bg-text-primary flex items-center justify-center text-white font-bold text-xl shadow-md">
+                02
+              </div>
+              <span className="text-secondary text-lg">✦</span>
             </div>
-            <CardTitle>Инсайты</CardTitle>
+            <CardTitle>ИИ-Агент в 1 клик</CardTitle>
             <CardDescription>
-              Автоматические рекомендации на основе данных
+              Вставьте любой пресс-релиз или законопроект и получите расчёт влияния на бизнес и готовую рекомендацию.
             </CardDescription>
           </Card>
 
           <Card hoverable>
-            <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 bg-gradient-to-br from-primary to-secondary shadow-md">
-              <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
+            <div className="flex items-center justify-between mb-4">
+              <div className="w-12 h-12 rounded-2xl gradient-bg flex items-center justify-center text-white font-bold text-xl shadow-md">
+                03
+              </div>
+              <span className="text-primary text-lg">✦</span>
             </div>
-            <CardTitle>Отчёты</CardTitle>
+            <CardTitle>Обратная связь</CardTitle>
             <CardDescription>
-              Еженедельные сводки и аналитические отчёты
+              Оценивайте полезность выводов лайком или дизлайком — система адаптируется под приоритеты руководителя.
             </CardDescription>
           </Card>
         </div>
-      </section>
-
-      {/* Stats Section */}
-      <section className="max-w-6xl mx-auto px-6 pb-16">
-        <Card padding="lg">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div>
-              <div className="text-3xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                4
-              </div>
-              <div className="text-sm text-text-secondary mt-1">Компонента</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                5
-              </div>
-              <div className="text-sm text-text-secondary mt-1">Страниц</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                100%
-              </div>
-              <div className="text-sm text-text-secondary mt-1">Адаптивность</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                REST API
-              </div>
-              <div className="text-sm text-text-secondary mt-1">Интеграция</div>
-            </div>
-          </div>
-        </Card>
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-border bg-white mt-16">
+      <footer className="border-t border-border bg-white/80 backdrop-blur-sm mt-12">
         <div className="max-w-6xl mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
-          <span className="text-sm text-text-hint">
-            © 2026 Яндекс. Панель руководителя
+          <span className="text-sm font-semibold text-text-primary">
+            © 2026 Яндекс · Инсайт-Радар
           </span>
-          <span className="text-sm text-text-hint">
-            v0.1.0
+          <span className="text-xs font-bold px-3 py-1 rounded-full bg-gray-100 text-text-secondary">
+            Young & Yandex Style · v0.2.0
           </span>
         </div>
       </footer>
