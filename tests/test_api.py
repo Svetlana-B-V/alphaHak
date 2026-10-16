@@ -57,6 +57,15 @@ def test_analyze_noise_and_validation():
     assert client.post("/api/v1/analyze", json={"title": "", "content": "текст"}).status_code == 422
 
 
+def test_analyze_matches_whole_word_start():
+    # "поставку" содержит "ставк", но это не новость про ставку ЦБ
+    response = client.post("/api/v1/analyze", json={
+        "title": "Санкции против поставщиков серверов",
+        "content": "Ограничения на поставку оборудования",
+    })
+    assert response.json()["importance_score"] == 7
+
+
 def test_cors_allows_frontend_only():
     preflight = {"Access-Control-Request-Method": "GET"}
     allowed = client.options("/api/v1/news", headers={"Origin": "http://localhost:5173", **preflight})

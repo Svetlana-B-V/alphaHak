@@ -8,6 +8,8 @@
 event, impact, recommendation, importance_score, confidence_score).
 Остальной бэкенд и фронтенд при этом менять не нужно.
 """
+import re
+
 from app.schemas.analyze import InsightDraft
 
 # Ключевые слова -> заготовка инсайта (сценарии из профиля Яндекса)
@@ -57,6 +59,7 @@ def analyze_news(title: str, content: str) -> InsightDraft:
     """MOCK: возвращает инсайт по новости. Здесь будет вызов LLM от ML-команды."""
     text = f"{title} {content}".lower()
     for keywords, insight in _RULES:
-        if any(word in text for word in keywords):
+        # \b - ключевое слово должно стоять в начале слова: "ставка" да, "поставка" нет
+        if any(re.search(rf"\b{re.escape(word)}", text) for word in keywords):
             return insight
     return _NOISE
