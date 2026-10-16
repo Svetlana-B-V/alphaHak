@@ -30,6 +30,8 @@ alembic upgrade head                # создать/обновить табли
 uvicorn app.main:app --reload       # запустить сервер
 ```
 
+> Весь сайт (бэкенд + фронтенд) одной командой: `python run.py` — см. `README.md`.
+
 - API: http://127.0.0.1:8000
 - **Swagger (вся документация, можно жать «Try it out»): http://127.0.0.1:8000/docs**
 
