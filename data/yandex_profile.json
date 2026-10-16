@@ -1,0 +1,499 @@
+{
+  "company": "Яндекс",
+  "company_description": "Российская технологическая группа: поиск и реклама, городские сервисы, подписки и развлечения, финансовые сервисы, корпоративные облачные и ИИ-продукты, автономные технологии.",
+  "primary_market": "Россия",
+  "business_lines": [
+    {
+      "name": "Поисковые сервисы и ИИ",
+      "revenue_h1_2026_bn_rub": 260.0,
+      "revenue_growth_yoy_pct": 4,
+      "adjusted_ebitda_h1_2026_bn_rub": 116.6,
+      "adjusted_ebitda_margin_h1_2026_pct": 44.8,
+      "products_and_activities": [
+        "Поиск",
+        "рекламные технологии",
+        "Алиса AI",
+        "вертикальные сервисы"
+      ],
+      "revenue_share_pct": null,
+      "evidence_url": "https://ir.yandex.ru/press-releases?id=29-07-2026&year=2026"
+    },
+    {
+      "name": "Городские сервисы",
+      "revenue_h1_2026_bn_rub": 426.1,
+      "revenue_growth_yoy_pct": 18,
+      "adjusted_ebitda_h1_2026_bn_rub": 55.9,
+      "adjusted_ebitda_margin_h1_2026_pct": 13.1,
+      "products_and_activities": [
+        "Райдтех",
+        "Яндекс Go",
+        "Яндекс Маркет",
+        "Еда",
+        "Доставка",
+        "Лавка"
+      ],
+      "revenue_share_pct": null,
+      "evidence_url": "https://ir.yandex.ru/press-releases?id=29-07-2026&year=2026"
+    },
+    {
+      "name": "Персональные сервисы",
+      "revenue_h1_2026_bn_rub": 127.3,
+      "revenue_growth_yoy_pct": 31,
+      "adjusted_ebitda_h1_2026_bn_rub": 3.3,
+      "adjusted_ebitda_margin_h1_2026_pct": 2.6,
+      "products_and_activities": [
+        "Яндекс Плюс",
+        "Кинопоиск",
+        "Яндекс Музыка",
+        "Яндекс Пэй",
+        "финансовые сервисы"
+      ],
+      "revenue_share_pct": null,
+      "evidence_url": "https://ir.yandex.ru/press-releases?id=29-07-2026&year=2026"
+    },
+    {
+      "name": "B2B Tech",
+      "revenue_h1_2026_bn_rub": 28.9,
+      "revenue_growth_yoy_pct": 32,
+      "adjusted_ebitda_h1_2026_bn_rub": 6.4,
+      "adjusted_ebitda_margin_h1_2026_pct": 22.0,
+      "products_and_activities": [
+        "Yandex Cloud",
+        "Яндекс 360",
+        "Yandex AI Studio",
+        "Yandex Security",
+        "SourceCraft"
+      ],
+      "revenue_share_pct": null,
+      "evidence_url": "https://ir.yandex.ru/press-releases?id=12-08-2026-01&year=2026"
+    },
+    {
+      "name": "Автономные технологии",
+      "revenue_h1_2026_bn_rub": 0.2,
+      "revenue_growth_yoy_pct": 103,
+      "adjusted_ebitda_h1_2026_bn_rub": -11.4,
+      "adjusted_ebitda_margin_h1_2026_pct": null,
+      "products_and_activities": [
+        "роботакси",
+        "роботы-доставщики",
+        "автономные грузовики",
+        "складская автоматизация"
+      ],
+      "revenue_share_pct": null,
+      "evidence_url": "https://ir.yandex.ru/press-releases?id=29-07-2026&year=2026"
+    },
+    {
+      "name": "Прочие сервисы и инициативы",
+      "revenue_h1_2026_bn_rub": 6.5,
+      "revenue_growth_yoy_pct": 4,
+      "adjusted_ebitda_h1_2026_bn_rub": -11.0,
+      "adjusted_ebitda_margin_h1_2026_pct": null,
+      "products_and_activities": [
+        "прочие сервисы и инициативы группы"
+      ],
+      "revenue_share_pct": null,
+      "evidence_url": "https://ir.yandex.ru/press-releases?id=29-07-2026&year=2026"
+    }
+  ],
+  "financials": {
+    "currency": "RUB",
+    "unit": "billion",
+    "h1_2026": {
+      "revenue_bn_rub": 759.0,
+      "revenue_growth_yoy_pct": 19,
+      "operating_profit_bn_rub": 134.9,
+      "adjusted_ebitda_bn_rub": 162.2,
+      "adjusted_ebitda_growth_yoy_pct": 41,
+      "adjusted_ebitda_margin_pct": 21.4,
+      "net_profit_bn_rub": 93.4,
+      "adjusted_net_profit_bn_rub": 82.2,
+      "cash_equivalents_short_term_deposits_bn_rub": 296.0,
+      "adjusted_net_debt_to_adjusted_ebitda_ltm": 0.02,
+      "source_url": "https://ir.yandex.ru/press-releases?id=29-07-2026&year=2026"
+    },
+    "q2_2026": {
+      "revenue_bn_rub": 386.3,
+      "revenue_growth_yoy_pct": 16,
+      "adjusted_ebitda_bn_rub": 88.9,
+      "adjusted_ebitda_growth_yoy_pct": 35,
+      "adjusted_net_profit_bn_rub": 47.6,
+      "advertising_and_promotion_gmv_growth_yoy_pct": 12,
+      "yandex_plus_subscription_revenue_bn_rub": 28.0,
+      "yandex_plus_subscription_revenue_growth_yoy_pct": 27,
+      "source_url": "https://ir.yandex.ru/press-releases?id=29-07-2026&year=2026",
+      "advertising_and_promotion_turnover_bn_rub": 128.0,
+      "advertising_and_promotion_turnover_note": "Оборот от услуг рекламы и продвижения (без НДС) в терминологии отчёта; не обозначать как GMV."
+    },
+    "fy_2025": {
+      "revenue_bn_rub": 1441.1,
+      "revenue_growth_yoy_pct": 32,
+      "adjusted_ebitda_bn_rub": 280.8,
+      "adjusted_ebitda_growth_yoy_pct": 49,
+      "adjusted_ebitda_margin_pct": 19.5,
+      "adjusted_net_profit_bn_rub": 141.4,
+      "source_url": "https://ir.yandex.ru/financial-releases?report=q4&year=2025"
+    },
+    "fy_2026_company_guidance_as_of_2026_07_29": {
+      "revenue_growth_yoy_pct_approx": 20,
+      "adjusted_ebitda_bn_rub_approx": 350,
+      "capex_as_pct_of_revenue_min": 10,
+      "capex_as_pct_of_revenue_max": 12,
+      "source_url": "https://ir.yandex.ru/press-releases?id=29-07-2026&year=2026",
+      "note": "Рекомендации менеджмента/прогноз компании, а не уже достигнутые результаты; прогноз может измениться."
+    },
+    "interpretation_notes": [
+      "Чистая прибыль и скорректированная чистая прибыль — разные показатели; не смешивать их.",
+      "Показатели выручки по сегментам нельзя складывать напрямую в консолидированную выручку без учёта межсегментных расчётов и исключений.",
+      "GMV финансовых сервисов — оборот покупок через продукты, а не выручка сегмента."
+    ]
+  },
+  "operational_metrics": {
+    "periods_and_metrics": [
+      {
+        "metric": "Подписчики Яндекс Плюса",
+        "period": "Q2 2026",
+        "value": 49.4,
+        "unit": "million subscribers",
+        "growth_yoy_pct": 14.4,
+        "source_url": "https://ir.yandex.ru/press-releases?id=29-07-2026&year=2026"
+      },
+      {
+        "metric": "Yandex Cloud customers",
+        "period": "H1 2026 / as of Q2 close",
+        "value": 64000,
+        "unit": "customers",
+        "growth_yoy_pct": 36,
+        "source_url": "https://ir.yandex.ru/press-releases?id=12-08-2026-01&year=2026"
+      },
+      {
+        "metric": "Large-business customers using Yandex Cloud AI services",
+        "period": "Q2 2026",
+        "value": 37,
+        "unit": "percent",
+        "change_yoy_percentage_points": 10,
+        "source_url": "https://ir.yandex.ru/press-releases?id=29-07-2026&year=2026"
+      },
+      {
+        "metric": "Large-business customers using Yandex Cloud information security services",
+        "period": "Q2 2026",
+        "value": 53,
+        "unit": "percent",
+        "change_yoy_percentage_points": 9,
+        "source_url": "https://ir.yandex.ru/press-releases?id=29-07-2026&year=2026"
+      },
+      {
+        "metric": "Commercial tokens consumed via Yandex AI Studio API",
+        "period": "Q2 2026",
+        "value": 398,
+        "unit": "billion tokens",
+        "qoq_multiple": 2.0,
+        "source_url": "https://ir.yandex.ru/press-releases?id=29-07-2026&year=2026"
+      },
+      {
+        "metric": "Yandex 360 audience",
+        "period": "Q2 2026",
+        "value": 117,
+        "unit": "million users",
+        "source_url": "https://ir.yandex.ru/press-releases?id=29-07-2026&year=2026"
+      },
+      {
+        "metric": "Yandex 360 organizations",
+        "period": "Q2 2026",
+        "value": 185000,
+        "unit": "organizations",
+        "source_url": "https://ir.yandex.ru/press-releases?id=29-07-2026&year=2026"
+      },
+      {
+        "metric": "Financial Services GMV",
+        "period": "Q2 2026",
+        "value": 351,
+        "unit": "billion RUB",
+        "growth_yoy_pct": 39,
+        "off_ecosystem_share_pct": 59,
+        "note": "GMV, не выручка.",
+        "source_url": "https://ir.yandex.ru/press-releases?id=29-07-2026&year=2026"
+      }
+    ]
+  },
+  "debt_profile": {
+    "as_of_date": "2026-10-16",
+    "cash_equivalents_short_term_deposits_bn_rub_as_of_2026_06_30": 296.0,
+    "adjusted_net_debt_to_adjusted_ebitda_ltm_as_of_2026_06_30": 0.02,
+    "listed_parent_company_bonds": [
+      {
+        "series": "001P-01",
+        "principal_bn_rub": 40,
+        "rate_type": "floating",
+        "coupon": "Ключевая ставка ЦБ + 1,70%",
+        "placed_on": "2025-04-21",
+        "maturity_date": "2027-04-11",
+        "isin": "RU000A10BF48"
+      },
+      {
+        "series": "001P-02",
+        "principal_bn_rub": 25,
+        "rate_type": "fixed",
+        "coupon": "13,50%",
+        "placed_on": "2025-09-09",
+        "maturity_date": "2028-02-26",
+        "isin": "RU000A10CMT9"
+      },
+      {
+        "series": "001P-03",
+        "principal_bn_rub": 40,
+        "rate_type": "floating",
+        "coupon": "Ключевая ставка ЦБ + 1,45%",
+        "placed_on": "2025-11-18",
+        "maturity_date": "2028-11-02",
+        "isin": "RU000A10DDR0"
+      },
+      {
+        "series": "001P-04",
+        "principal_bn_rub": 40,
+        "rate_type": "floating",
+        "coupon": "Ключевая ставка ЦБ + 1,25%",
+        "placed_on": "2026-06-19",
+        "maturity_date": "2029-06-03",
+        "isin": "RU000A10FEA9"
+      },
+      {
+        "series": "001P-05",
+        "principal_bn_rub": 20,
+        "rate_type": "fixed",
+        "coupon": "13,40%",
+        "placed_on": "2026-06-19",
+        "maturity_date": "2028-06-08",
+        "isin": "RU000A10FEB7"
+      }
+    ],
+    "listed_parent_bonds_principal_total_bn_rub": 165,
+    "listed_parent_bonds_floating_principal_bn_rub": 120,
+    "listed_parent_bonds_fixed_principal_bn_rub": 45,
+    "floating_share_of_listed_parent_bonds_pct": 72.7,
+    "fixed_share_of_listed_parent_bonds_pct": 27.3,
+    "floating_share_of_total_group_debt_pct": null,
+    "fixed_share_of_total_group_debt_pct": null,
+    "source_url": "https://ir.yandex.ru/debt/bonds",
+    "scope_note": "Доли рассчитаны по пяти выпускам облигаций, перечисленным в разделе выпусков МКПАО «Яндекс». Это не структура всей задолженности группы: расчёт не включает автоматически все обязательства дочерних компаний, банковские/прочие займы, лизинг и иные инструменты.",
+    "rate_sensitivity_illustration": {
+      "principal_with_floating_coupon_bn_rub": 120,
+      "annual_interest_cost_change_per_plus_1_percentage_point_bn_rub_approx": 1.2,
+      "assumption": "Упрощённая оценка: весь номинал плавающих выпусков в обращении, полное годовое влияние изменения ставки на купон без учёта погашений, дат пересмотра, фактического остатка долга и налоговых эффектов.",
+      "not_a_forecast": true
+    }
+  },
+  "risks": [
+    {
+      "id": "R1",
+      "name": "Непрерывность работы дата-центров и критических сервисов",
+      "risk_type": "confirmed_operational_event_and_forward_risk",
+      "description": "В октябре 2026 года Яндекс сообщил о повреждении нескольких дата-центров и о проблемах с доступностью Яндекс Пэй. Это показывает потенциальное влияние физической недоступности инфраструктуры на сервисы, клиентов, операции и репутацию.",
+      "evidence_status": "Подтверждён публичными сообщениями компании от 9 и 11 октября 2026 года; будущие финансовые последствия в источниках не оценены.",
+      "monitoring_signals": [
+        "статус восстановления площадок",
+        "доступность критических сервисов",
+        "SLA корпоративных клиентов",
+        "операционные расходы на восстановление",
+        "компенсации клиентам"
+      ],
+      "source_urls": [
+        "https://ir.yandex.ru/press-releases?id=09-10-2026-01&year=2026",
+        "https://ir.yandex.ru/press-releases?id=11-10-2026-01&year=2026"
+      ]
+    },
+    {
+      "id": "R2",
+      "name": "Чувствительность к ключевой ставке и стоимости финансирования",
+      "risk_type": "evidence_based_financial_risk",
+      "description": "Три из пяти перечисленных выпусков облигаций материнской компании имеют плавающий купон, привязанный к ключевой ставке. Повышение ставки может увеличить купонные расходы по этим выпускам и стоимость нового финансирования.",
+      "evidence_status": "Подтверждены параметры облигаций; доля плавающей ставки в полной задолженности группы неизвестна.",
+      "monitoring_signals": [
+        "решения Банка России",
+        "инфляция и инфляционные ожидания",
+        "новые выпуски и кредитные спреды",
+        "денежный поток и capex"
+      ],
+      "source_urls": [
+        "https://ir.yandex.ru/debt/bonds",
+        "https://www.cbr.ru/press/keypr/"
+      ]
+    },
+    {
+      "id": "R3",
+      "name": "Капиталоёмкость и окупаемость инвестиционных направлений",
+      "risk_type": "evidence_based_financial_risk",
+      "description": "Компания прогнозировала capex на уровне 10–12% выручки в 2026 году. В сегменте автономных технологий скорректированная EBITDA за H1 2026 года была отрицательной (−11,4 млрд ₽), поэтому скорость монетизации новых технологий важна для финансового профиля.",
+      "evidence_status": "Основано на прогнозе capex и раскрытой сегментной EBITDA; причинно-следственные будущие эффекты остаются аналитическим выводом.",
+      "monitoring_signals": [
+        "capex / выручка",
+        "скорректированная EBITDA по сегментам",
+        "денежный поток",
+        "коммерческие внедрения автономных технологий"
+      ],
+      "source_urls": [
+        "https://ir.yandex.ru/press-releases?id=29-07-2026&year=2026"
+      ]
+    },
+    {
+      "id": "R4",
+      "name": "Регуляторные изменения в цифровых платформах, рекламе, ИИ и персональных данных",
+      "risk_type": "analyst_watchlist_hypothesis",
+      "description": "Новые требования могут повысить расходы на compliance, изменить обработку данных или ограничения продуктовых функций. Это сценарный риск; он не означает, что конкретное нарушение или новое ограничение уже произошло.",
+      "evidence_status": "Гипотеза для мониторинга; оценивать только при появлении конкретного законопроекта, нормативного акта или решения регулятора.",
+      "monitoring_signals": [
+        "законопроекты и подзаконные акты",
+        "решения ФАС и Роскомнадзора",
+        "требования к персональным данным и ИИ"
+      ],
+      "source_urls": [
+        "https://ir.yandex.ru/press-releases?year=2026"
+      ]
+    },
+    {
+      "id": "R5",
+      "name": "Конкуренция в генеративном ИИ, рекламе и облачных услугах",
+      "risk_type": "analyst_watchlist_hypothesis",
+      "description": "Конкуренты могут ускорить запуск ИИ-продуктов или снизить цены, что способно потребовать дополнительных расходов на разработку и продажи. Направление B2B Tech растёт, но это не исключает риска конкуренции.",
+      "evidence_status": "Гипотеза для мониторинга; необходимы конкретные новости конкурентов и проверка коммерческого эффекта.",
+      "monitoring_signals": [
+        "запуски продуктов конкурентов",
+        "изменение цен облачных сервисов",
+        "рынок корпоративного ИИ",
+        "доля рынка и retention"
+      ],
+      "source_urls": [
+        "https://ir.yandex.ru/press-releases?id=12-08-2026-01&year=2026"
+      ]
+    }
+  ],
+  "opportunities": [
+    {
+      "id": "O1",
+      "name": "Масштабирование корпоративного ИИ и Yandex Cloud",
+      "description": "B2B Tech показал рост выручки на 32% и скорректированной EBITDA на 45% год к году в H1 2026; база Yandex Cloud выросла до 64 тыс. клиентов.",
+      "evidence_status": "Подтверждено финансовой и операционной отчётностью компании.",
+      "source_url": "https://ir.yandex.ru/press-releases?id=12-08-2026-01&year=2026"
+    },
+    {
+      "id": "O2",
+      "name": "Рост монетизации ИИ в поиске, рекламе и рекомендательных системах",
+      "description": "Внедрение ИИ может повышать релевантность рекомендаций, качество рекламного таргетинга и производительность продуктов; финансовый эффект конкретной технологии нужно проверять по фактическим метрикам.",
+      "evidence_status": "Есть примеры продуктовых запусков; ожидаемый финансовый эффект является гипотезой до раскрытия KPI.",
+      "source_url": "https://ir.yandex.ru/press-releases?id=01-10-2026-01&year=2026"
+    },
+    {
+      "id": "O3",
+      "name": "Рост подписочной модели и персональных сервисов",
+      "description": "Подписчики Яндекс Плюса достигли 49,4 млн в Q2 2026, +14,4% год к году; подписочная выручка Плюса в квартале выросла на 27%.",
+      "evidence_status": "Подтверждено отчётом за Q2 2026.",
+      "source_url": "https://ir.yandex.ru/press-releases?id=29-07-2026&year=2026"
+    },
+    {
+      "id": "O4",
+      "name": "Повышение эффективности городских сервисов и автоматизации",
+      "description": "Городские сервисы выросли на 18% по выручке и улучшили маржинальность скорректированной EBITDA в H1 2026. Рободоставка и автономный транспорт могут быть долгосрочными драйверами, если подтвердится экономика масштабирования.",
+      "evidence_status": "Рост городских сервисов подтверждён; эффект от новых инициатив требует проверки по отдельным метрикам.",
+      "source_url": "https://ir.yandex.ru/press-releases?id=29-07-2026&year=2026"
+    },
+    {
+      "id": "O5",
+      "name": "Рост финансовых сервисов за пределами экосистемы",
+      "description": "Оборот финансовых сервисов в Q2 2026 вырос на 39% до 351 млрд ₽, 59% оборота пришлось на операции за пределами экосистемы. Это может расширять внешнюю клиентскую базу и партнёрские возможности.",
+      "evidence_status": "Подтверждено отчётом; оборот GMV не следует интерпретировать как выручку.",
+      "source_url": "https://ir.yandex.ru/press-releases?id=29-07-2026&year=2026"
+    }
+  ],
+  "strategic_priorities": [
+    {
+      "priority": "Развитие генеративного ИИ и ИИ-агентов",
+      "description": "Встраивание ИИ в потребительские продукты и корпоративные процессы, развитие моделей, агентных систем и платформ",
+      "evidence_url": "https://ir.yandex.ru/press-releases?year=2026"
+    },
+    {
+      "priority": "Масштабирование B2B Tech",
+      "description": "Рост Yandex Cloud, Yandex 360, корпоративных ИИ- и информационно-безопасностных сервисов",
+      "evidence_url": "https://ir.yandex.ru/press-releases?id=12-08-2026-01&year=2026"
+    },
+    {
+      "priority": "Рост прибыльности городских сервисов",
+      "description": "Продолжение роста сервисов мобильности, электронной коммерции и доставки при повышении операционной эффективности",
+      "evidence_url": "https://ir.yandex.ru/press-releases?id=29-07-2026&year=2026"
+    },
+    {
+      "priority": "Монетизация подписок и финансовых сервисов",
+      "description": "Расширение базы подписчиков, финансовых продуктов и оборота вне экосистемы",
+      "evidence_url": "https://ir.yandex.ru/press-releases?id=29-07-2026&year=2026"
+    },
+    {
+      "priority": "Инвестиционная дисциплина и устойчивость инфраструктуры",
+      "description": "Баланс капитальных затрат, прибыльности и устойчивости критической инфраструктуры; октябрьский инцидент подчёркивает операционную значимость устойчивости дата-центров",
+      "evidence_url": "https://ir.yandex.ru/press-releases?id=09-10-2026-01&year=2026"
+    }
+  ],
+  "ml_context": {
+    "company_name": "Яндекс",
+    "business_units": [
+      "Поисковые сервисы и ИИ",
+      "Городские сервисы",
+      "Персональные сервисы",
+      "B2B Tech",
+      "Автономные технологии",
+      "Прочие сервисы и инициативы",
+      "Финансы группы",
+      "Казначейство",
+      "Инфраструктура"
+    ],
+    "key_risks": [
+      "Операционная устойчивость дата-центров и доступность критических сервисов",
+      "Изменение ключевой ставки и стоимость финансирования; часть перечисленных облигаций имеет плавающий купон",
+      "Капиталоёмкость и окупаемость инвестиций, включая автономные технологии",
+      "Регуляторные изменения в цифровых платформах, рекламе, ИИ и персональных данных",
+      "Конкуренция в генеративном ИИ, рекламе и облачных сервисах"
+    ],
+    "strategic_priorities": [
+      "Развитие генеративного ИИ и ИИ-агентов",
+      "Масштабирование B2B Tech и корпоративных сервисов",
+      "Повышение прибыльности городских сервисов",
+      "Рост подписок и финансовых сервисов",
+      "Инвестиционная дисциплина и устойчивость инфраструктуры"
+    ],
+    "financial_snapshot": {
+      "revenue_h1_2026_bn_rub": 759.0,
+      "adjusted_ebitda_h1_2026_bn_rub": 162.2,
+      "cash_and_short_term_deposits_as_of_2026_06_30_bn_rub": 296.0,
+      "adjusted_net_debt_to_adjusted_ebitda_ltm": 0.02,
+      "floating_coupon_principal_among_listed_parent_bonds_bn_rub": 120
+    },
+    "context_note": "Финансовые и операционные значения относятся к указанным периодам; сегментные показатели не следует суммировать без учёта исключений. Риски с пометкой гипотеза не означают состоявшееся нарушение или убыток."
+  },
+  "sources": [
+    {
+      "topic": "Финансовые результаты Q2/H1 2026",
+      "url": "https://ir.yandex.ru/press-releases?id=29-07-2026&year=2026"
+    },
+    {
+      "topic": "B2B Tech результаты H1 2026",
+      "url": "https://ir.yandex.ru/press-releases?id=12-08-2026-01&year=2026"
+    },
+    {
+      "topic": "Результаты 2025 года",
+      "url": "https://ir.yandex.ru/financial-releases?report=q4&year=2025"
+    },
+    {
+      "topic": "Выпуски облигаций материнской компании",
+      "url": "https://ir.yandex.ru/debt/bonds"
+    },
+    {
+      "topic": "Решение по ключевой ставке 11 сентября 2026",
+      "url": "https://www.cbr.ru/press/keypr/"
+    },
+    {
+      "topic": "Инцидент с дата-центрами",
+      "url": "https://ir.yandex.ru/press-releases?id=09-10-2026-01&year=2026"
+    },
+    {
+      "topic": "Восстановление Яндекс Пэй",
+      "url": "https://ir.yandex.ru/press-releases?id=11-10-2026-01&year=2026"
+    }
+  ]
+}
