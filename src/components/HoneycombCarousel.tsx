@@ -16,10 +16,10 @@ interface HoneycombCarouselProps {
   items: InsightItem[];
 }
 
-/* Псевдоэлемент «Кубик» (вместо пчёл на Картинках 1 и 2) */
+/* Псевдоэлемент «Кубик» в оттенках палитры (вместо пчёл на Рисунке 3) */
 function FloatingCube({
   className = '',
-  size = 22,
+  size = 24,
   color = 'primary',
   delay = 0,
 }: {
@@ -37,7 +37,7 @@ function FloatingCube({
   return (
     <motion.div
       animate={{
-        y: [0, -10, 0, 8, 0],
+        y: [0, -9, 0, 7, 0],
         rotate: [0, 8, -6, 0],
       }}
       transition={{
@@ -46,23 +46,87 @@ function FloatingCube({
         repeat: Infinity,
         ease: 'easeInOut',
       }}
-      className={`pointer-events-none select-none z-20 ${className}`}
+      className={`pointer-events-none select-none z-30 ${className}`}
     >
-      <svg
-        width={size}
-        height={size}
-        viewBox="0 0 32 32"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        {/* Верхняя грань кубика */}
+      <svg width={size} height={size} viewBox="0 0 32 32" fill="none">
         <polygon points="16,2 30,9 16,16 2,9" fill={fillMap.top} />
-        {/* Левая грань кубика */}
         <polygon points="2,9 16,16 16,30 2,23" fill={fillMap.left} />
-        {/* Правая грань кубика */}
         <polygon points="16,16 30,9 30,23 16,30" fill={fillMap.right} />
       </svg>
     </motion.div>
+  );
+}
+
+/* Декоративная пустая правильная сота (рамка или блик, как на Рисунке 3) */
+function DecorativeHex({
+  className = '',
+  size = 150,
+  variant = 'outline-primary',
+}: {
+  className?: string;
+  size?: number;
+  variant?: 'outline-primary' | 'outline-secondary' | 'glow-primary' | 'glow-secondary' | 'double';
+}) {
+  const height = Math.round(size * 0.866);
+  return (
+    <div
+      style={{ width: size, height }}
+      className={`pointer-events-none select-none absolute ${className}`}
+    >
+      <svg width="100%" height="100%" viewBox="0 0 200 174" fill="none">
+        {variant === 'outline-primary' && (
+          <polygon
+            points="50,4 150,4 196,87 150,170 50,170 4,87"
+            stroke="#FF3D71"
+            strokeOpacity="0.35"
+            strokeWidth="4"
+          />
+        )}
+        {variant === 'outline-secondary' && (
+          <polygon
+            points="50,4 150,4 196,87 150,170 50,170 4,87"
+            stroke="#8B5CF6"
+            strokeOpacity="0.35"
+            strokeWidth="4"
+          />
+        )}
+        {variant === 'glow-primary' && (
+          <polygon
+            points="50,4 150,4 196,87 150,170 50,170 4,87"
+            fill="#FF3D71"
+            fillOpacity="0.10"
+            stroke="#FF3D71"
+            strokeOpacity="0.25"
+            strokeWidth="2.5"
+          />
+        )}
+        {variant === 'glow-secondary' && (
+          <polygon
+            points="50,4 150,4 196,87 150,170 50,170 4,87"
+            fill="#8B5CF6"
+            fillOpacity="0.10"
+            stroke="#8B5CF6"
+            strokeOpacity="0.25"
+            strokeWidth="2.5"
+          />
+        )}
+        {variant === 'double' && (
+          <>
+            <polygon
+              points="50,4 150,4 196,87 150,170 50,170 4,87"
+              stroke="#FF3D71"
+              strokeOpacity="0.45"
+              strokeWidth="4"
+            />
+            <polygon
+              points="60,22 140,22 180,87 140,152 60,152 20,87"
+              fill="#8B5CF6"
+              fillOpacity="0.12"
+            />
+          </>
+        )}
+      </svg>
+    </div>
   );
 }
 
@@ -74,7 +138,6 @@ export default function HoneycombCarousel({ items }: HoneycombCarouselProps) {
   const total = items.length;
   if (total === 0) return null;
 
-  // Бесконечный индекс по модулю
   const getModIndex = (idx: number) => ((idx % total) + total) % total;
 
   const currentIdx = getModIndex(activeIndex);
@@ -94,6 +157,12 @@ export default function HoneycombCarousel({ items }: HoneycombCarouselProps) {
     setActiveIndex((prevVal) => prevVal + step);
   };
 
+  const goToIndex = (targetIdx: number) => {
+    if (targetIdx === currentIdx) return;
+    setDirection(targetIdx > currentIdx ? 1 : -1);
+    setActiveIndex(targetIdx);
+  };
+
   async function rate(newsId: number, insightId: number, isLike: boolean) {
     try {
       await sendFeedback({
@@ -111,106 +180,106 @@ export default function HoneycombCarousel({ items }: HoneycombCarouselProps) {
   const currentLiked = likedMap[current.insight.id] ?? null;
 
   return (
-    <div className="relative py-6 md:py-10 select-none">
-      {/* Панель управления бесконечным листанием сот */}
-      <div className="flex flex-wrap items-center justify-between gap-4 mb-6 px-2">
-        <div className="flex items-center gap-3">
-          <span className="hex-badge px-3.5 py-1.5 gradient-bg text-white text-xs font-extrabold">
-            СОТА {currentIdx + 1} ИЗ {total}
-          </span>
-          <span className="text-xs md:text-sm text-text-secondary font-medium">
-            Листайте бесконечно — следующий инсайт помещается в главную соту
-          </span>
-        </div>
-
-        <div className="flex items-center gap-2">
-          <button
-            type="button"
-            onClick={() => paginate(-1)}
-            className="w-11 h-11 rounded-full bg-white border-2 border-border hover:border-primary text-text-primary hover:text-primary font-extrabold flex items-center justify-center shadow-sm transition-all cursor-pointer"
-            aria-label="Предыдущий инсайт"
-          >
-            ←
-          </button>
-          <button
-            type="button"
-            onClick={() => paginate(1)}
-            className="w-11 h-11 rounded-full gradient-bg text-white font-extrabold flex items-center justify-center shadow-md hover:scale-105 transition-all cursor-pointer"
-            aria-label="Следующий инсайт"
-          >
-            →
-          </button>
-        </div>
-      </div>
-
+    <div className="relative py-4 select-none w-full">
       {/* =====================================================================
-          ДЕСКТОПНЫЙ КЛАСТЕР СОТ (КАРТИНКА 1 — ГОРИЗОНТАЛЬНОЕ БЕСКОНЕЧНОЕ ЛИСТАНИЕ)
+          ДЕСКТОПНЫЙ ПОЛНОШИРИННЫЙ УЗОР ПРАВИЛЬНЫХ СОТ (КАК НА РИСУНКЕ 3)
           ===================================================================== */}
-      <div className="hidden lg:flex items-center justify-center relative min-h-[560px] px-4 overflow-hidden">
-        {/* Фоновые многослойные пустые контуры сот (как на Картинке 1) */}
-        <div className="absolute left-[2%] top-[18%] w-36 h-32 hex-flat bg-primary/10 pointer-events-none" />
-        <div className="absolute left-[6%] bottom-[14%] w-40 h-36 p-[2px] hex-flat bg-secondary/25 pointer-events-none">
-          <div className="w-full h-full hex-flat bg-[#FAFAFA]" />
-        </div>
-        <div className="absolute right-[3%] top-[14%] w-40 h-36 p-[2px] hex-flat bg-primary/25 pointer-events-none">
-          <div className="w-full h-full hex-flat bg-[#FAFAFA]" />
-        </div>
-        <div className="absolute right-[5%] bottom-[16%] w-32 h-28 hex-flat bg-secondary/12 pointer-events-none" />
-        <div className="absolute left-[26%] top-[6%] w-28 h-24 hex-flat bg-primary/10 pointer-events-none" />
-        <div className="absolute right-[26%] bottom-[6%] w-28 h-24 hex-flat bg-secondary/10 pointer-events-none" />
+      <div className="hidden lg:flex items-center justify-center relative min-h-[600px] w-full overflow-visible">
+        {/* Левое крыло декоративных пустых сот-рамок и бликов (заполняет всё пространство слева) */}
+        <DecorativeHex className="-left-10 top-[38%]" size={135} variant="outline-primary" />
+        <DecorativeHex className="left-[2%] top-[20%]" size={155} variant="glow-secondary" />
+        <DecorativeHex className="left-[4%] bottom-[16%]" size={165} variant="double" />
+        <DecorativeHex className="left-[13%] top-[8%]" size={140} variant="outline-secondary" />
+        <DecorativeHex className="left-[15%] bottom-[6%]" size={130} variant="glow-primary" />
+        <DecorativeHex className="left-[27%] top-[4%]" size={120} variant="outline-primary" />
+        <DecorativeHex className="left-[29%] bottom-[4%]" size={130} variant="glow-secondary" />
 
-        {/* Декоративные КУБИКИ вокруг сот (вместо пчёл на Картинке 1) */}
-        <FloatingCube className="absolute left-[11%] top-[12%]" size={30} color="primary" delay={0} />
-        <FloatingCube className="absolute left-[19%] bottom-[10%]" size={26} color="secondary" delay={0.8} />
-        <FloatingCube className="absolute left-[31%] top-[8%]" size={22} color="dark" delay={1.4} />
-        <FloatingCube className="absolute right-[29%] top-[9%]" size={32} color="primary" delay={0.4} />
-        <FloatingCube className="absolute right-[13%] bottom-[12%]" size={28} color="secondary" delay={1.1} />
-        <FloatingCube className="absolute right-[8%] top-[28%]" size={22} color="dark" delay={1.9} />
+        {/* Правое крыло декоративных пустых сот-рамок и бликов (заполняет всё пространство справа) */}
+        <DecorativeHex className="right-[28%] top-[4%]" size={130} variant="glow-primary" />
+        <DecorativeHex className="right-[27%] bottom-[4%]" size={125} variant="outline-secondary" />
+        <DecorativeHex className="right-[14%] top-[7%]" size={145} variant="double" />
+        <DecorativeHex className="right-[15%] bottom-[7%]" size={135} variant="outline-primary" />
+        <DecorativeHex className="right-[3%] top-[19%]" size={165} variant="glow-primary" />
+        <DecorativeHex className="right-[4%] bottom-[17%]" size={150} variant="outline-secondary" />
+        <DecorativeHex className="-right-10 top-[40%]" size={135} variant="glow-secondary" />
 
-        {/* Левая колонка малых сот (предыдущие инсайты — клик переносит в центр) */}
-        <div className="flex flex-col gap-5 -mr-6 z-10 items-end">
-          {/* Сота Prev-1 */}
+        {/* Кубики в оттенках палитры (вместо пчёл на Рисунке 3) */}
+        <FloatingCube className="absolute left-[5%] top-[14%]" size={30} color="primary" delay={0} />
+        <FloatingCube className="absolute left-[12%] bottom-[12%]" size={26} color="secondary" delay={0.8} />
+        <FloatingCube className="absolute left-[26%] top-[11%]" size={24} color="dark" delay={1.4} />
+        <FloatingCube className="absolute right-[25%] top-[10%]" size={30} color="primary" delay={0.4} />
+        <FloatingCube className="absolute right-[11%] bottom-[13%]" size={28} color="secondary" delay={1.1} />
+        <FloatingCube className="absolute right-[4%] top-[30%]" size={24} color="dark" delay={1.9} />
+
+        {/* ЛЕВАЯ КОЛОНКА ИНТЕРАКТИВНЫХ ПРАВИЛЬНЫХ СОТ */}
+        <div className="flex flex-col items-end gap-3 -mr-6 z-10">
+          {/* Верхняя левая правильная сота (Prev) */}
           <motion.button
             type="button"
-            whileHover={{ scale: 1.04, x: -4 }}
+            whileHover={{ scale: 1.05, x: -4 }}
             onClick={() => paginate(-1)}
-            className="w-[250px] h-[220px] p-[3px] hex-flat bg-gradient-to-br from-primary/60 to-secondary/60 hex-drop-shadow cursor-pointer text-left group"
+            className="relative w-[270px] h-[234px] hex-drop-shadow cursor-pointer text-center group"
           >
-            <div className="w-full h-full hex-flat bg-white/95 px-9 py-6 flex flex-col justify-between relative">
-              <div className="flex items-center justify-between">
-                <span className="text-[10px] font-extrabold uppercase tracking-wider text-secondary">
-                  ← Пред. сота
-                </span>
-                <span className="hex-badge px-2 py-0.5 bg-gray-100 text-text-primary text-[10px] font-bold">
-                  {prev.insight.importance_score}/10
-                </span>
-              </div>
+            <svg className="absolute inset-0 w-full h-full" viewBox="0 0 200 174" fill="none">
+              <polygon
+                points="50,4 150,4 196,87 150,170 50,170 4,87"
+                fill="#FFFFFF"
+                fillOpacity="0.95"
+                stroke="#FF3D71"
+                strokeWidth="4"
+              />
+              <polygon
+                points="56,14 144,14 186,87 144,160 56,160 14,87"
+                stroke="#8B5CF6"
+                strokeOpacity="0.25"
+                strokeWidth="1.5"
+              />
+            </svg>
+
+            {/* Текст строго в безопасной центральной области правильной соты */}
+            <div className="relative z-10 w-full h-full px-[23%] py-[16%] flex flex-col items-center justify-between">
+              <span className="px-2.5 py-0.5 rounded-full bg-rose-50 text-primary text-[10px] font-extrabold uppercase">
+                ← Сота · {prev.insight.importance_score}/10
+              </span>
+
               <div>
-                <div className="text-sm font-extrabold text-text-primary line-clamp-2 group-hover:text-primary transition-colors">
+                <div className="text-xs font-extrabold text-text-primary line-clamp-2 group-hover:text-primary transition-colors leading-snug">
                   {prev.insight.event}
                 </div>
-                <p className="text-[11px] text-text-secondary line-clamp-2 mt-1">
+                <p className="text-[11px] text-text-secondary line-clamp-2 mt-1 leading-tight">
                   {prev.insight.impact}
                 </p>
               </div>
-              <span className="text-[10px] font-bold text-primary">
-                Нажмите, чтобы открыть в центре →
+
+              <span className="text-[10px] font-bold text-secondary">
+                В центр →
               </span>
             </div>
           </motion.button>
 
-          {/* Сота Prev-2 (смещённая по сотовой сетке) */}
+          {/* Нижняя левая правильная сота (Prev-2, смещена по сотовой сетке) */}
           <motion.button
             type="button"
-            whileHover={{ scale: 1.04, x: -4 }}
+            whileHover={{ scale: 1.05, x: -4 }}
             onClick={() => paginate(-1)}
-            className="w-[220px] h-[190px] mr-8 p-[2px] hex-flat bg-gradient-to-br from-secondary/40 to-primary/40 opacity-85 hover:opacity-100 cursor-pointer text-left"
+            className="relative w-[230px] h-[199px] mr-10 hex-drop-shadow cursor-pointer text-center opacity-90 hover:opacity-100"
           >
-            <div className="w-full h-full hex-flat bg-white/90 px-8 py-5 flex flex-col justify-center">
-              <span className="text-[10px] font-bold text-text-hint uppercase">
+            <svg className="absolute inset-0 w-full h-full" viewBox="0 0 200 174" fill="none">
+              <polygon
+                points="50,4 150,4 196,87 150,170 50,170 4,87"
+                fill="#FFFFFF"
+                fillOpacity="0.9"
+                stroke="#8B5CF6"
+                strokeOpacity="0.55"
+                strokeWidth="3.5"
+              />
+            </svg>
+
+            <div className="relative z-10 w-full h-full px-[24%] py-[18%] flex flex-col items-center justify-center">
+              <span className="text-[10px] font-extrabold text-secondary uppercase mb-1">
                 В очереди · {prev2.insight.importance_score}/10
               </span>
-              <div className="text-xs font-extrabold text-text-primary line-clamp-2 mt-1">
+              <div className="text-xs font-bold text-text-primary line-clamp-2 leading-snug">
                 {prev2.insight.event}
               </div>
             </div>
@@ -218,21 +287,42 @@ export default function HoneycombCarousel({ items }: HoneycombCarouselProps) {
         </div>
 
         {/* ============================================================
-            ЦЕНТРАЛЬНАЯ ГЛАВНАЯ САМАЯ БОЛЬШАЯ МНОГОСЛОЙНАЯ СОТА
+            ЦЕНТРАЛЬНАЯ ГЛАВНАЯ ПРАВИЛЬНАЯ СОТА (600x520)
             ============================================================ */}
-        <div className="relative z-20 mx-2">
-          {/* Слой 1: Смещённый внешний гексагональный ореол */}
-          <div className="absolute -inset-3 hex-flat bg-gradient-to-r from-primary/25 to-secondary/25 blur-sm pointer-events-none" />
-          {/* Слой 2: Смещённая контурная рамка соты (эффект многослойности с Картинки 1) */}
-          <div className="absolute inset-0 translate-x-3 translate-y-3 hex-flat border-2 border-primary/40 pointer-events-none" />
+        <div className="relative z-20 mx-1">
+          {/* Многослойные внешние контуры вокруг главной соты (как на Рисунке 3) */}
+          <svg
+            className="absolute -inset-4 w-[calc(100%+32px)] h-[calc(100%+32px)] pointer-events-none"
+            viewBox="0 0 200 174"
+            fill="none"
+          >
+            <polygon
+              points="50,2 150,2 198,87 150,172 50,172 2,87"
+              stroke="#FF3D71"
+              strokeOpacity="0.3"
+              strokeWidth="2"
+            />
+          </svg>
+          <svg
+            className="absolute inset-0 w-full h-full translate-x-3.5 translate-y-3.5 pointer-events-none"
+            viewBox="0 0 200 174"
+            fill="none"
+          >
+            <polygon
+              points="50,3 150,3 197,87 150,171 50,171 3,87"
+              stroke="#8B5CF6"
+              strokeOpacity="0.45"
+              strokeWidth="3"
+            />
+          </svg>
 
           <AnimatePresence mode="wait" custom={direction}>
             <motion.div
               key={current.insight.id}
               custom={direction}
-              initial={{ opacity: 0, x: direction * 70, scale: 0.92 }}
+              initial={{ opacity: 0, x: direction * 80, scale: 0.9 }}
               animate={{ opacity: 1, x: 0, scale: 1 }}
-              exit={{ opacity: 0, x: direction * -70, scale: 0.92 }}
+              exit={{ opacity: 0, x: direction * -80, scale: 0.9 }}
               transition={{ duration: 0.38, ease: 'easeOut' }}
               drag="x"
               dragConstraints={{ left: 0, right: 0 }}
@@ -240,81 +330,95 @@ export default function HoneycombCarousel({ items }: HoneycombCarouselProps) {
                 if (info.offset.x < -50) paginate(1);
                 else if (info.offset.x > 50) paginate(-1);
               }}
-              className="w-[570px] min-h-[480px] p-[5px] hex-flat gradient-bg hex-drop-shadow cursor-grab active:cursor-grabbing"
+              className="relative w-[600px] h-[520px] hex-drop-shadow cursor-grab active:cursor-grabbing"
             >
-              {/* Внутренний слой центральной соты */}
-              <div className="w-full h-full min-h-[470px] hex-flat bg-white px-16 py-10 flex flex-col justify-between relative">
-                {/* Верхняя плашка внутри главной соты */}
-                <div>
-                  <div className="flex items-center justify-between gap-2 mb-3 pb-2.5 border-b border-gray-100">
-                    <div className="flex items-center gap-2">
-                      <Badge variant={badge.variant}>
-                        ✦ {badge.label} · {current.insight.importance_score}/10
-                      </Badge>
-                      <Badge variant="info">
-                        AI {Math.round(current.insight.confidence_score * 100)}%
-                      </Badge>
-                    </div>
-                    {current.news.source && (
-                      <Badge variant="default">{current.news.source}</Badge>
-                    )}
-                  </div>
+              {/* Правильный 6-угольник (SVG-фон с толстой градиентной рамкой и внутренним контуром) */}
+              <svg className="absolute inset-0 w-full h-full" viewBox="0 0 200 174" fill="none">
+                <defs>
+                  <linearGradient id="mainHexGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#FF3D71" />
+                    <stop offset="100%" stopColor="#8B5CF6" />
+                  </linearGradient>
+                </defs>
+                <polygon
+                  points="50,3 150,3 197,87 150,171 50,171 3,87"
+                  fill="#FFFFFF"
+                  stroke="url(#mainHexGrad)"
+                  strokeWidth="4.5"
+                />
+                <polygon
+                  points="54,10 146,10 190,87 146,164 54,164 10,87"
+                  stroke="url(#mainHexGrad)"
+                  strokeOpacity="0.22"
+                  strokeWidth="1.5"
+                />
+              </svg>
 
-                  <h2 className="text-xl md:text-2xl font-extrabold font-display text-text-primary leading-snug">
+              {/* Контент главной соты — строго в центральной безопасной зоне 6-угольника (px-[22%] py-[11%]) */}
+              <div className="relative z-10 w-full h-full px-[21%] py-[10%] flex flex-col justify-between text-center">
+                {/* Верхние бейджи */}
+                <div className="flex flex-wrap items-center justify-center gap-1.5">
+                  <Badge variant={badge.variant}>
+                    ✦ {badge.label} · {current.insight.importance_score}/10
+                  </Badge>
+                  <Badge variant="info">
+                    AI {Math.round(current.insight.confidence_score * 100)}%
+                  </Badge>
+                  {current.news.source && (
+                    <Badge variant="default">{current.news.source}</Badge>
+                  )}
+                </div>
+
+                {/* Заголовок и новость */}
+                <div>
+                  <h2 className="text-lg xl:text-xl font-extrabold font-display text-text-primary leading-snug">
                     {current.insight.event}
                   </h2>
-                  <p className="text-xs text-text-secondary mt-1 line-clamp-2">
+                  <p className="text-xs text-text-secondary mt-1 line-clamp-1">
                     {current.news.title}
                   </p>
+                </div>
 
-                  {/* Многослойные капсулы Влияния и Рекомендации внутри соты */}
-                  <div className="space-y-2.5 mt-4">
-                    <div className="p-3.5 rounded-2xl bg-gray-50 border border-border">
-                      <div className="text-[10px] font-extrabold text-text-hint uppercase tracking-wider mb-0.5">
-                        Влияние на Яндекс
-                      </div>
-                      <p className="text-xs md:text-sm text-text-primary leading-relaxed">
-                        {current.insight.impact}
-                      </p>
+                {/* Капсулы Влияния и Рекомендации */}
+                <div className="space-y-2 text-left">
+                  <div className="p-3 rounded-2xl bg-gray-50 border border-border">
+                    <div className="text-[10px] font-extrabold text-text-hint uppercase tracking-wider mb-0.5">
+                      Влияние на Яндекс
                     </div>
+                    <p className="text-xs text-text-primary leading-relaxed line-clamp-3">
+                      {current.insight.impact}
+                    </p>
+                  </div>
 
-                    <div className="p-3.5 rounded-2xl bg-gradient-to-r from-primary/8 via-secondary/10 to-secondary/15 border border-secondary/25">
-                      <div className="text-[10px] font-extrabold text-primary uppercase tracking-wider mb-0.5">
-                        ✦ Рекомендация руководителю
-                      </div>
-                      <p className="text-xs md:text-sm font-semibold text-text-primary leading-relaxed">
-                        {current.insight.recommendation}
-                      </p>
+                  <div className="p-3 rounded-2xl bg-gradient-to-r from-primary/8 via-secondary/10 to-secondary/15 border border-secondary/25">
+                    <div className="text-[10px] font-extrabold text-primary uppercase tracking-wider mb-0.5">
+                      ✦ Рекомендация руководителю
                     </div>
+                    <p className="text-xs font-semibold text-text-primary leading-relaxed line-clamp-3">
+                      {current.insight.recommendation}
+                    </p>
                   </div>
                 </div>
 
-                {/* Нижние кнопки оценки и перехода */}
-                <div className="flex items-center justify-between gap-2 pt-3 border-t border-gray-100 mt-3">
-                  <div className="flex items-center gap-2">
-                    <Button
-                      size="sm"
-                      variant={currentLiked === true ? 'primary' : 'ghost'}
-                      onClick={() =>
-                        rate(current.news.id, current.insight.id, true)
-                      }
-                    >
-                      👍 Полезно
-                    </Button>
-                    <Button
-                      size="sm"
-                      variant={currentLiked === false ? 'secondary' : 'ghost'}
-                      onClick={() =>
-                        rate(current.news.id, current.insight.id, false)
-                      }
-                    >
-                      👎 Шум
-                    </Button>
-                  </div>
-
+                {/* Кнопки лайка и отчёта */}
+                <div className="flex items-center justify-center gap-2 pt-1">
+                  <Button
+                    size="sm"
+                    variant={currentLiked === true ? 'primary' : 'ghost'}
+                    onClick={() => rate(current.news.id, current.insight.id, true)}
+                  >
+                    👍 Полезно
+                  </Button>
+                  <Button
+                    size="sm"
+                    variant={currentLiked === false ? 'secondary' : 'ghost'}
+                    onClick={() => rate(current.news.id, current.insight.id, false)}
+                  >
+                    👎 Шум
+                  </Button>
                   <Link to={`/news/${current.news.id}`}>
                     <Button size="sm" variant="outline">
-                      Полный отчёт →
+                      Отчёт →
                     </Button>
                   </Link>
                 </div>
@@ -323,50 +427,74 @@ export default function HoneycombCarousel({ items }: HoneycombCarouselProps) {
           </AnimatePresence>
         </div>
 
-        {/* Правая колонка малых сот (следующие инсайты — клик переносит в центр) */}
-        <div className="flex flex-col gap-5 -ml-6 z-10 items-start">
-          {/* Сота Next-1 */}
+        {/* ПРАВАЯ КОЛОНКА ИНТЕРАКТИВНЫХ ПРАВИЛЬНЫХ СОТ */}
+        <div className="flex flex-col items-start gap-3 -ml-6 z-10">
+          {/* Верхняя правая правильная сота (Next) */}
           <motion.button
             type="button"
-            whileHover={{ scale: 1.04, x: 4 }}
+            whileHover={{ scale: 1.05, x: 4 }}
             onClick={() => paginate(1)}
-            className="w-[260px] h-[225px] p-[3px] hex-flat bg-gradient-to-br from-secondary to-primary hex-drop-shadow cursor-pointer text-left group"
+            className="relative w-[270px] h-[234px] hex-drop-shadow cursor-pointer text-center group"
           >
-            <div className="w-full h-full hex-flat bg-white/95 px-9 py-6 flex flex-col justify-between">
-              <div className="flex items-center justify-between">
-                <span className="text-[10px] font-extrabold uppercase tracking-wider text-primary">
-                  След. сота →
-                </span>
-                <span className="hex-badge px-2 py-0.5 gradient-bg text-white text-[10px] font-bold">
-                  {next.insight.importance_score}/10
-                </span>
-              </div>
+            <svg className="absolute inset-0 w-full h-full" viewBox="0 0 200 174" fill="none">
+              <polygon
+                points="50,4 150,4 196,87 150,170 50,170 4,87"
+                fill="#FFFFFF"
+                fillOpacity="0.95"
+                stroke="#8B5CF6"
+                strokeWidth="4"
+              />
+              <polygon
+                points="56,14 144,14 186,87 144,160 56,160 14,87"
+                stroke="#FF3D71"
+                strokeOpacity="0.25"
+                strokeWidth="1.5"
+              />
+            </svg>
+
+            <div className="relative z-10 w-full h-full px-[23%] py-[16%] flex flex-col items-center justify-between">
+              <span className="px-2.5 py-0.5 rounded-full bg-violet-50 text-secondary text-[10px] font-extrabold uppercase">
+                След. · {next.insight.importance_score}/10 →
+              </span>
+
               <div>
-                <div className="text-sm font-extrabold text-text-primary line-clamp-2 group-hover:text-secondary transition-colors">
+                <div className="text-xs font-extrabold text-text-primary line-clamp-2 group-hover:text-secondary transition-colors leading-snug">
                   {next.insight.event}
                 </div>
-                <p className="text-[11px] text-text-secondary line-clamp-2 mt-1">
+                <p className="text-[11px] text-text-secondary line-clamp-2 mt-1 leading-tight">
                   {next.insight.impact}
                 </p>
               </div>
-              <span className="text-[10px] font-bold text-secondary">
-                Кликните для вывода на главный план →
+
+              <span className="text-[10px] font-bold text-primary">
+                Вывести в центр →
               </span>
             </div>
           </motion.button>
 
-          {/* Сота Next-2 */}
+          {/* Нижняя правая правильная сота (Next-2) */}
           <motion.button
             type="button"
-            whileHover={{ scale: 1.04, x: 4 }}
+            whileHover={{ scale: 1.05, x: 4 }}
             onClick={() => paginate(1)}
-            className="w-[225px] h-[195px] ml-8 p-[2px] hex-flat bg-gradient-to-br from-primary/50 to-secondary/50 opacity-85 hover:opacity-100 cursor-pointer text-left"
+            className="relative w-[230px] h-[199px] ml-10 hex-drop-shadow cursor-pointer text-center opacity-90 hover:opacity-100"
           >
-            <div className="w-full h-full hex-flat bg-white/90 px-8 py-5 flex flex-col justify-center">
-              <span className="text-[10px] font-bold text-text-hint uppercase">
+            <svg className="absolute inset-0 w-full h-full" viewBox="0 0 200 174" fill="none">
+              <polygon
+                points="50,4 150,4 196,87 150,170 50,170 4,87"
+                fill="#FFFFFF"
+                fillOpacity="0.9"
+                stroke="#FF3D71"
+                strokeOpacity="0.55"
+                strokeWidth="3.5"
+              />
+            </svg>
+
+            <div className="relative z-10 w-full h-full px-[24%] py-[18%] flex flex-col items-center justify-center">
+              <span className="text-[10px] font-extrabold text-primary uppercase mb-1">
                 Далее · {next2.insight.importance_score}/10
               </span>
-              <div className="text-xs font-extrabold text-text-primary line-clamp-2 mt-1">
+              <div className="text-xs font-bold text-text-primary line-clamp-2 leading-snug">
                 {next2.insight.event}
               </div>
             </div>
@@ -375,56 +503,88 @@ export default function HoneycombCarousel({ items }: HoneycombCarouselProps) {
       </div>
 
       {/* =====================================================================
-          МОБИЛЬНЫЙ И ПЛАНШЕТНЫЙ КЛАСТЕР СОТ (КАРТИНКА 2 — ВЕРТИКАЛЬНЫЕ СОТЫ)
+          МОБИЛЬНАЯ И ПЛАНШЕТНАЯ ВЕРСИЯ (ВЕРТИКАЛЬНЫЕ ПРАВИЛЬНЫЕ СОТЫ)
           ===================================================================== */}
-      <div className="lg:hidden flex flex-col items-center relative py-4 px-2">
-        {/* Декоративные кубики для мобильной сотовой ветки (вместо пчёл на Картинке 2) */}
-        <FloatingCube className="absolute left-3 top-6" size={24} color="primary" delay={0.2} />
-        <FloatingCube className="absolute right-4 top-28" size={22} color="secondary" delay={0.9} />
+      <div className="lg:hidden flex flex-col items-center relative py-2 px-2">
+        <FloatingCube className="absolute left-3 top-4" size={24} color="primary" delay={0.2} />
+        <FloatingCube className="absolute right-4 top-20" size={22} color="secondary" delay={0.9} />
         <FloatingCube className="absolute left-4 bottom-24" size={22} color="dark" delay={1.5} />
-        <FloatingCube className="absolute right-3 bottom-6" size={26} color="primary" delay={0.5} />
 
-        {/* Верхние малые переплетающиеся соты (как на Картинке 2) */}
-        <div className="flex items-center justify-center gap-3 -mb-5 z-10 w-full max-w-sm">
+        {/* Верхние малые соты (превью предыдущего инсайта + декоративная сота) */}
+        <div className="flex items-center justify-center gap-2 -mb-4 z-10">
           <button
             type="button"
             onClick={() => paginate(-1)}
-            className="w-40 h-36 p-[2.5px] hex-pointy bg-gradient-to-b from-primary to-secondary shadow-md text-center cursor-pointer"
+            className="relative w-[170px] h-[148px] hex-drop-shadow cursor-pointer"
           >
-            <div className="w-full h-full hex-pointy bg-white/95 px-4 py-6 flex flex-col items-center justify-center">
-              <span className="text-[10px] font-extrabold text-primary uppercase">
+            <svg className="absolute inset-0 w-full h-full" viewBox="0 0 200 174" fill="none">
+              <polygon
+                points="50,4 150,4 196,87 150,170 50,170 4,87"
+                fill="#FFFFFF"
+                stroke="#FF3D71"
+                strokeWidth="4"
+              />
+            </svg>
+            <div className="relative z-10 w-full h-full px-[23%] py-[16%] flex flex-col items-center justify-center text-center">
+              <span className="text-[9px] font-extrabold text-primary uppercase">
                 ← Пред. ({prev.insight.importance_score}/10)
               </span>
-              <span className="text-xs font-bold text-text-primary line-clamp-2 mt-1">
+              <span className="text-[11px] font-bold text-text-primary line-clamp-2 mt-0.5 leading-tight">
                 {prev.insight.event}
               </span>
             </div>
           </button>
 
-          <div className="w-24 h-24 hex-pointy bg-secondary/15 border border-secondary/30 flex items-center justify-center text-xs font-extrabold text-secondary mt-6">
-            #{currentIdx + 1}/{total}
+          <div className="relative w-[110px] h-[95px] mt-6">
+            <svg className="absolute inset-0 w-full h-full" viewBox="0 0 200 174" fill="none">
+              <polygon
+                points="50,4 150,4 196,87 150,170 50,170 4,87"
+                fill="#8B5CF6"
+                fillOpacity="0.12"
+                stroke="#8B5CF6"
+                strokeOpacity="0.4"
+                strokeWidth="4"
+              />
+            </svg>
+            <div className="relative z-10 w-full h-full flex items-center justify-center text-xs font-extrabold text-secondary">
+              #{currentIdx + 1}/{total}
+            </div>
           </div>
         </div>
 
-        {/* Центральная большая вертикальная сота на мобильном (Картинка 2) */}
-        <div className="w-full max-w-md relative z-20 my-1">
+        {/* Центральная мобильная сота с полным текстом */}
+        <div className="w-full max-w-[390px] relative z-20 my-1">
           <AnimatePresence mode="wait" custom={direction}>
             <motion.div
               key={current.insight.id}
               custom={direction}
-              initial={{ opacity: 0, x: direction * 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: direction * -50 }}
-              transition={{ duration: 0.3 }}
+              initial={{ opacity: 0, x: direction * 60, scale: 0.94 }}
+              animate={{ opacity: 1, x: 0, scale: 1 }}
+              exit={{ opacity: 0, x: direction * -60, scale: 0.94 }}
+              transition={{ duration: 0.32 }}
               drag="x"
               dragConstraints={{ left: 0, right: 0 }}
               onDragEnd={(_, info) => {
                 if (info.offset.x < -40) paginate(1);
                 else if (info.offset.x > 40) paginate(-1);
               }}
-              className="p-[4px] hex-card-mobile-pointy gradient-bg hex-drop-shadow"
+              className="relative w-full min-h-[430px] hex-drop-shadow"
             >
-              <div className="w-full hex-card-mobile-pointy bg-white px-6 py-12 sm:px-10 flex flex-col justify-between space-y-3">
+              <svg
+                className="absolute inset-0 w-full h-full"
+                viewBox="0 0 200 220"
+                preserveAspectRatio="none"
+                fill="none"
+              >
+                <polygon
+                  points="100,3 197,38 197,182 100,217 3,182 3,38"
+                  fill="#FFFFFF"
+                  stroke="url(#mainHexGrad)"
+                  strokeWidth="4"
+                />
+              </svg>
+
+              <div className="relative z-10 w-full h-full px-7 py-12 flex flex-col justify-between space-y-2.5 text-center">
                 <div className="flex flex-wrap items-center justify-center gap-1.5">
                   <Badge variant={badge.variant}>
                     ✦ {badge.label} · {current.insight.importance_score}/10
@@ -434,30 +594,30 @@ export default function HoneycombCarousel({ items }: HoneycombCarouselProps) {
                   </Badge>
                 </div>
 
-                <h3 className="text-lg sm:text-xl font-extrabold font-display text-center text-text-primary">
+                <h3 className="text-base sm:text-lg font-extrabold font-display text-text-primary leading-snug">
                   {current.insight.event}
                 </h3>
-                <p className="text-xs text-text-secondary text-center">
+                <p className="text-xs text-text-secondary line-clamp-2">
                   {current.news.title}
                 </p>
 
-                <div className="p-3 rounded-2xl bg-gray-50 border border-border text-xs">
-                  <div className="font-extrabold text-text-hint uppercase mb-0.5">
+                <div className="p-3 rounded-2xl bg-gray-50 border border-border text-xs text-left">
+                  <div className="font-extrabold text-text-hint uppercase text-[10px] mb-0.5">
                     Влияние
                   </div>
-                  <p className="text-text-primary">{current.insight.impact}</p>
+                  <p className="text-text-primary leading-snug">{current.insight.impact}</p>
                 </div>
 
-                <div className="p-3 rounded-2xl bg-gradient-to-br from-primary/10 to-secondary/15 border border-secondary/20 text-xs">
-                  <div className="font-extrabold text-primary uppercase mb-0.5">
+                <div className="p-3 rounded-2xl bg-gradient-to-br from-primary/10 to-secondary/15 border border-secondary/20 text-xs text-left">
+                  <div className="font-extrabold text-primary uppercase text-[10px] mb-0.5">
                     ✦ Рекомендация
                   </div>
-                  <p className="text-text-primary font-medium">
+                  <p className="text-text-primary font-medium leading-snug">
                     {current.insight.recommendation}
                   </p>
                 </div>
 
-                <div className="flex flex-wrap items-center justify-center gap-2 pt-2">
+                <div className="flex items-center justify-center gap-2 pt-1">
                   <Button
                     size="sm"
                     variant={currentLiked === true ? 'primary' : 'ghost'}
@@ -483,27 +643,96 @@ export default function HoneycombCarousel({ items }: HoneycombCarouselProps) {
           </AnimatePresence>
         </div>
 
-        {/* Нижние переплетающиеся соты (как в нижней части Картинки 2) */}
-        <div className="flex items-center justify-center gap-3 -mt-5 z-10 w-full max-w-sm">
-          <div className="w-24 h-24 hex-pointy bg-primary/12 border border-primary/30 flex items-center justify-center text-[11px] font-extrabold text-primary -mt-6">
-            AI {Math.round( next.insight.confidence_score * 100 )}%
+        {/* Нижние переплетающиеся соты на мобильном */}
+        <div className="flex items-center justify-center gap-2 -mt-4 z-10">
+          <div className="relative w-[110px] h-[95px] -mt-6">
+            <svg className="absolute inset-0 w-full h-full" viewBox="0 0 200 174" fill="none">
+              <polygon
+                points="50,4 150,4 196,87 150,170 50,170 4,87"
+                fill="#FF3D71"
+                fillOpacity="0.12"
+                stroke="#FF3D71"
+                strokeOpacity="0.4"
+                strokeWidth="4"
+              />
+            </svg>
+            <div className="relative z-10 w-full h-full flex items-center justify-center text-[11px] font-extrabold text-primary">
+              AI {Math.round(next.insight.confidence_score * 100)}%
+            </div>
           </div>
 
           <button
             type="button"
             onClick={() => paginate(1)}
-            className="w-44 h-38 p-[2.5px] hex-pointy bg-gradient-to-b from-secondary to-primary shadow-md text-center cursor-pointer"
+            className="relative w-[170px] h-[148px] hex-drop-shadow cursor-pointer"
           >
-            <div className="w-full h-full hex-pointy bg-white/95 px-4 py-6 flex flex-col items-center justify-center">
-              <span className="text-[10px] font-extrabold text-secondary uppercase">
-                След. сота ({next.insight.importance_score}/10) →
+            <svg className="absolute inset-0 w-full h-full" viewBox="0 0 200 174" fill="none">
+              <polygon
+                points="50,4 150,4 196,87 150,170 50,170 4,87"
+                fill="#FFFFFF"
+                stroke="#8B5CF6"
+                strokeWidth="4"
+              />
+            </svg>
+            <div className="relative z-10 w-full h-full px-[23%] py-[16%] flex flex-col items-center justify-center text-center">
+              <span className="text-[9px] font-extrabold text-secondary uppercase">
+                След. ({next.insight.importance_score}/10) →
               </span>
-              <span className="text-xs font-bold text-text-primary line-clamp-2 mt-1">
+              <span className="text-[11px] font-bold text-text-primary line-clamp-2 mt-0.5 leading-tight">
                 {next.insight.event}
               </span>
             </div>
           </button>
         </div>
+      </div>
+
+      {/* =====================================================================
+          НАВИГАЦИОННАЯ ПАНЕЛЬ ПОД СОТАМИ ИНСАЙТОВ (ДЛЯ ДЕСКТОПА И ТЕЛЕФОНОВ)
+          ===================================================================== */}
+      <div className="mt-6 flex flex-col items-center justify-center gap-3 z-30 relative">
+        <div className="glass border border-border rounded-full px-3 py-2 sm:px-5 sm:py-2.5 shadow-lg flex items-center gap-3 sm:gap-6">
+          <button
+            type="button"
+            onClick={() => paginate(-1)}
+            className="px-4 py-2 sm:px-6 sm:py-2.5 rounded-full bg-white hover:bg-gray-100 border border-border text-text-primary font-extrabold text-xs sm:text-sm inline-flex items-center gap-2 transition-all active:scale-95 cursor-pointer shadow-xs"
+          >
+            <span className="text-primary text-base leading-none">←</span>
+            <span>Предыдущая сота</span>
+          </button>
+
+          {/* Индикаторы сот */}
+          <div className="flex items-center gap-2">
+            {items.map((item, idx) => {
+              const isActive = idx === currentIdx;
+              return (
+                <button
+                  key={item.insight.id}
+                  type="button"
+                  onClick={() => goToIndex(idx)}
+                  title={item.insight.event}
+                  className={`h-3.5 transition-all cursor-pointer hex-regular-flat ${
+                    isActive
+                      ? 'w-8 gradient-bg scale-110 shadow-sm'
+                      : 'w-4 bg-gray-300 hover:bg-primary/50'
+                  }`}
+                />
+              );
+            })}
+          </div>
+
+          <button
+            type="button"
+            onClick={() => paginate(1)}
+            className="px-4 py-2 sm:px-6 sm:py-2.5 rounded-full gradient-bg text-white font-extrabold text-xs sm:text-sm inline-flex items-center gap-2 transition-all hover:shadow-md hover:scale-[1.02] active:scale-95 cursor-pointer shadow-sm"
+          >
+            <span>Следующая сота</span>
+            <span className="text-base leading-none">→</span>
+          </button>
+        </div>
+
+        <span className="text-xs text-text-hint font-medium">
+          Инсайт {currentIdx + 1} из {total} · Нажмите на кнопки или свайпните соту
+        </span>
       </div>
     </div>
   );

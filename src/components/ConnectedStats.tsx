@@ -14,132 +14,250 @@ interface ConnectedStatsProps {
 
 export default function ConnectedStats({ stats }: ConnectedStatsProps) {
   return (
-    <div className="relative max-w-5xl mx-auto my-10 select-none px-2">
-      {/* Фоновые декоративные соты и кубики вокруг статистики */}
-      <div className="hidden md:block absolute -top-6 left-12 w-24 h-20 hex-flat border-2 border-primary/20 pointer-events-none" />
-      <div className="hidden md:block absolute top-1/2 right-6 w-20 h-16 hex-flat bg-secondary/10 pointer-events-none" />
-      <div className="hidden md:block absolute -bottom-4 left-1/4 w-4 h-4 bg-primary/35 rotate-12 rounded-xs pointer-events-none" />
-      <div className="hidden md:block absolute top-8 right-1/3 w-3.5 h-3.5 bg-secondary/40 -rotate-12 rounded-xs pointer-events-none" />
+    <div className="relative max-w-5xl mx-auto my-12 select-none px-4">
+      {/* Декоративные пустые правильные соты-рамки и блики вокруг (как в сотовом узоре) */}
+      <svg
+        className="hidden md:block absolute top-4 left-[8%] w-28 h-24 text-primary/25 pointer-events-none"
+        viewBox="0 0 200 174"
+        fill="none"
+      >
+        <polygon
+          points="50,3 150,3 197,87 150,171 50,171 3,87"
+          stroke="currentColor"
+          strokeWidth="3"
+        />
+      </svg>
+      <svg
+        className="hidden md:block absolute top-16 left-[14%] w-20 h-18 text-secondary/15 pointer-events-none"
+        viewBox="0 0 200 174"
+        fill="currentColor"
+      >
+        <polygon points="50,3 150,3 197,87 150,171 50,171 3,87" />
+      </svg>
+      <svg
+        className="hidden md:block absolute bottom-12 left-[18%] w-24 h-20 text-secondary/25 pointer-events-none"
+        viewBox="0 0 200 174"
+        fill="none"
+      >
+        <polygon
+          points="50,3 150,3 197,87 150,171 50,171 3,87"
+          stroke="currentColor"
+          strokeWidth="2.5"
+        />
+      </svg>
+      <svg
+        className="hidden md:block absolute top-1/3 right-[6%] w-28 h-24 text-primary/15 pointer-events-none"
+        viewBox="0 0 200 174"
+        fill="currentColor"
+      >
+        <polygon points="50,3 150,3 197,87 150,171 50,171 3,87" />
+      </svg>
 
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-0 relative items-center">
-        {/* Верхняя правая сота (Блок 1) */}
+      {/* Сотовый триптих правильных шестиугольников */}
+      <div className="flex flex-col md:grid md:grid-cols-12 items-center gap-4 md:gap-0 relative">
+        {/* ПРАВИЛЬНАЯ СОТА 1 (Верхняя правая) */}
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, scale: 0.92 }}
+          whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="md:col-start-6 md:col-span-7 relative hex-drop-shadow-dark"
+          transition={{ duration: 0.45 }}
+          className="md:col-start-6 md:col-span-6 flex justify-center relative z-10"
         >
-          {/* Внешний многослойный контур соты */}
-          <div className="p-[3px] hex-card-shape bg-gradient-to-r from-primary/60 via-secondary/60 to-white/20">
-            <div className="dark-surface text-white hex-card-shape px-10 py-8 md:px-14 md:py-10 relative">
-              <div className="flex items-center justify-between mb-4">
-                {/* Декоративные кубики вместо полосок */}
-                <div className="flex items-center gap-1.5">
-                  <span className="w-3 h-3 bg-primary inline-block" />
-                  <span className="w-3 h-3 bg-secondary/70 inline-block" />
-                  <span className="w-3 h-3 border border-white/40 inline-block" />
-                </div>
-                <span className="text-[11px] uppercase tracking-widest text-white/50 font-bold">
+          <div className="relative w-[320px] h-[278px] sm:w-[370px] sm:h-[320px] hex-drop-shadow-dark">
+            {/* Смещённый многослойный контур соты */}
+            <svg
+              className="absolute inset-0 w-full h-full translate-x-2.5 translate-y-2.5 text-primary/35 pointer-events-none"
+              viewBox="0 0 200 174"
+              fill="none"
+            >
+              <polygon
+                points="50,2 150,2 198,87 150,172 50,172 2,87"
+                stroke="currentColor"
+                strokeWidth="2.5"
+              />
+            </svg>
+
+            {/* Основной правильный шестиугольник */}
+            <svg
+              className="absolute inset-0 w-full h-full"
+              viewBox="0 0 200 174"
+              fill="none"
+            >
+              <defs>
+                <linearGradient id="hexDark1" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#171717" />
+                  <stop offset="100%" stopColor="#241D30" />
+                </linearGradient>
+                <linearGradient id="hexStroke1" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#FF3D71" />
+                  <stop offset="100%" stopColor="#8B5CF6" />
+                </linearGradient>
+              </defs>
+              <polygon
+                points="50,3 150,3 197,87 150,171 50,171 3,87"
+                fill="url(#hexDark1)"
+                stroke="url(#hexStroke1)"
+                strokeWidth="3.5"
+              />
+            </svg>
+
+            {/* Контент строго в безопасной зоне правильного 6-угольника */}
+            <div className="relative z-10 w-full h-full px-[22%] py-[14%] flex flex-col items-center justify-center text-center text-white">
+              <div className="flex items-center gap-1.5 mb-2">
+                <span className="w-2.5 h-2.5 bg-primary inline-block" />
+                <span className="w-2.5 h-2.5 bg-secondary inline-block" />
+                <span className="text-[10px] uppercase tracking-widest text-white/55 font-bold ml-1">
                   YANDEX // RADAR
                 </span>
               </div>
 
-              <div className="text-4xl md:text-6xl font-extrabold font-display tracking-tight flex items-baseline gap-1 md:justify-end">
+              <div className="text-4xl sm:text-5xl font-extrabold font-display tracking-tight flex items-baseline justify-center gap-1">
                 <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
                   {stats[0].value}
                 </span>
                 {stats[0].suffix && (
-                  <span className="text-white/40 text-2xl md:text-4xl font-bold">
+                  <span className="text-white/45 text-2xl sm:text-3xl font-bold">
                     {stats[0].suffix}
                   </span>
                 )}
               </div>
-              <p className="text-xs md:text-sm text-white/85 mt-3 md:text-right leading-relaxed max-w-md ml-auto">
+
+              <p className="text-xs sm:text-[13px] text-white/85 mt-2 leading-snug">
                 {stats[0].label}
               </p>
             </div>
           </div>
         </motion.div>
 
-        {/* Промежуточный элемент 1 — ТОЛЬКО В ФОРМЕ КРУГА (исправлено по Картинке 4) */}
-        <div className="flex md:col-start-6 md:col-span-2 items-center justify-center -my-3 md:-my-5 z-20 pointer-events-none">
-          <div className="w-9 h-9 md:w-11 md:h-11 rounded-full bg-[#1B1924] border-2 border-primary/40 shadow-lg flex items-center justify-center">
+        {/* Круглый соединитель 1 */}
+        <div className="flex md:col-start-5 md:col-span-2 items-center justify-center -my-3 md:-my-8 z-20 pointer-events-none">
+          <div className="w-10 h-10 rounded-full bg-[#1B1924] border-2 border-primary/50 shadow-lg flex items-center justify-center">
             <span className="w-3 h-3 rounded-full bg-gradient-to-r from-primary to-secondary" />
           </div>
         </div>
 
-        {/* Средняя левая сота (Блок 2) */}
+        {/* ПРАВИЛЬНАЯ СОТА 2 (Средняя левая) */}
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, scale: 0.92 }}
+          whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.12 }}
-          className="md:col-start-1 md:col-span-7 relative hex-drop-shadow-dark md:-mt-4"
+          transition={{ duration: 0.45, delay: 0.1 }}
+          className="md:col-start-2 md:col-span-6 flex justify-center relative z-10 md:-mt-14"
         >
-          <div className="p-[3px] hex-card-shape bg-gradient-to-r from-secondary/60 via-primary/60 to-white/20">
-            <div className="dark-surface text-white hex-card-shape px-10 py-8 md:px-14 md:py-10 relative">
-              <div className="flex items-center justify-between mb-4">
-                <span className="px-3 py-1 rounded-full text-xs font-semibold bg-white/10 text-white/90 border border-white/15">
-                  ✦ Live-поток
-                </span>
-                <div className="flex items-center gap-1.5">
-                  <span className="w-2.5 h-2.5 bg-primary animate-pulse" />
-                  <span className="w-2.5 h-2.5 bg-secondary" />
-                </div>
-              </div>
+          <div className="relative w-[320px] h-[278px] sm:w-[370px] sm:h-[320px] hex-drop-shadow-dark">
+            <svg
+              className="absolute inset-0 w-full h-full -translate-x-2.5 translate-y-2.5 text-secondary/35 pointer-events-none"
+              viewBox="0 0 200 174"
+              fill="none"
+            >
+              <polygon
+                points="50,2 150,2 198,87 150,172 50,172 2,87"
+                stroke="currentColor"
+                strokeWidth="2.5"
+              />
+            </svg>
 
-              <div className="text-4xl md:text-6xl font-extrabold font-display tracking-tight flex items-baseline gap-1">
+            <svg
+              className="absolute inset-0 w-full h-full"
+              viewBox="0 0 200 174"
+              fill="none"
+            >
+              <polygon
+                points="50,3 150,3 197,87 150,171 50,171 3,87"
+                fill="url(#hexDark1)"
+                stroke="url(#hexStroke1)"
+                strokeWidth="3.5"
+              />
+            </svg>
+
+            <div className="relative z-10 w-full h-full px-[22%] py-[14%] flex flex-col items-center justify-center text-center text-white">
+              <span className="px-3 py-0.5 rounded-full text-[11px] font-semibold bg-white/10 text-white/90 border border-white/15 mb-2">
+                ✦ Live-поток
+              </span>
+
+              <div className="text-4xl sm:text-5xl font-extrabold font-display tracking-tight flex items-baseline justify-center gap-1">
                 <span className="bg-gradient-to-r from-secondary via-primary to-primary bg-clip-text text-transparent">
                   {stats[1].value}
                 </span>
                 {stats[1].suffix && (
-                  <span className="text-white/40 text-2xl md:text-4xl font-bold">
+                  <span className="text-white/45 text-2xl sm:text-3xl font-bold">
                     {stats[1].suffix}
                   </span>
                 )}
               </div>
-              <p className="text-xs md:text-sm text-white/85 mt-3 max-w-md leading-relaxed">
+
+              <p className="text-xs sm:text-[13px] text-white/85 mt-2 leading-snug">
                 {stats[1].label}
               </p>
             </div>
           </div>
         </motion.div>
 
-        {/* Промежуточный элемент 2 — ТОЛЬКО В ФОРМЕ КРУГА (исправлено по Картинке 4) */}
-        <div className="flex md:col-start-7 md:col-span-2 items-center justify-center -my-3 md:-my-4 z-20 pointer-events-none">
-          <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-[#1B1924] border-2 border-secondary/50 shadow-lg flex items-center justify-center">
+        {/* Круглый соединитель 2 */}
+        <div className="flex md:col-start-6 md:col-span-2 items-center justify-center -my-3 md:-my-8 z-20 pointer-events-none">
+          <div className="w-9 h-9 rounded-full bg-[#1B1924] border-2 border-secondary/60 shadow-lg flex items-center justify-center">
             <span className="w-2.5 h-2.5 rounded-full bg-primary" />
           </div>
         </div>
 
-        {/* Нижняя правая градиентная сота (Блок 3 + переход по стрелке на Картинке 5) */}
+        {/* ПРАВИЛЬНАЯ СОТА 3 (Нижняя правая градиентная со стрелкой на /dashboard) */}
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, scale: 0.92 }}
+          whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.22 }}
-          className="md:col-start-7 md:col-span-5 relative hex-drop-shadow md:-mt-3"
+          transition={{ duration: 0.45, delay: 0.2 }}
+          className="md:col-start-6 md:col-span-5 flex justify-center relative z-10 md:-mt-12"
         >
-          <div className="p-[3px] hex-card-shape bg-white/80">
-            <div className="gradient-bg text-white hex-card-shape px-10 py-7 md:px-12 md:py-8 flex flex-col justify-between">
-              <div className="flex items-center justify-between gap-4">
-                <span className="text-3xl md:text-4xl font-extrabold font-display">
+          <div className="relative w-[290px] h-[252px] sm:w-[320px] sm:h-[278px] hex-drop-shadow">
+            <svg
+              className="absolute inset-0 w-full h-full translate-x-2 translate-y-2 text-primary/40 pointer-events-none"
+              viewBox="0 0 200 174"
+              fill="none"
+            >
+              <polygon
+                points="50,2 150,2 198,87 150,172 50,172 2,87"
+                stroke="currentColor"
+                strokeWidth="2.5"
+              />
+            </svg>
+
+            <svg
+              className="absolute inset-0 w-full h-full"
+              viewBox="0 0 200 174"
+              fill="none"
+            >
+              <defs>
+                <linearGradient id="hexGradMain" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#FF3D71" />
+                  <stop offset="100%" stopColor="#8B5CF6" />
+                </linearGradient>
+              </defs>
+              <polygon
+                points="50,3 150,3 197,87 150,171 50,171 3,87"
+                fill="url(#hexGradMain)"
+                stroke="#FFFFFF"
+                strokeWidth="3"
+              />
+            </svg>
+
+            <div className="relative z-10 w-full h-full px-[22%] py-[14%] flex flex-col items-center justify-center text-center text-white">
+              <div className="flex items-center justify-center gap-3">
+                <span className="text-3xl sm:text-4xl font-extrabold font-display">
                   {stats[2].value}
                   {stats[2].suffix}
                 </span>
 
-                {/* Стрелка с переходом на страницу дашборда (Картинка 5) */}
                 <Link
                   to="/dashboard"
                   title="Перейти к дашборду инсайтов"
                   aria-label="Перейти к дашборду инсайтов"
-                  className="w-10 h-10 rounded-full bg-white/25 hover:bg-white hover:text-primary flex items-center justify-center text-base font-extrabold transition-all duration-200 hover:scale-110 shadow-md cursor-pointer shrink-0"
+                  className="w-9 h-9 rounded-full bg-white/25 hover:bg-white hover:text-primary flex items-center justify-center text-sm font-extrabold transition-all duration-200 hover:scale-110 shadow-md cursor-pointer shrink-0"
                 >
                   ↗
                 </Link>
               </div>
-              <p className="text-xs md:text-sm text-white/95 mt-2 font-medium leading-snug">
+
+              <p className="text-xs sm:text-[13px] text-white/95 mt-2 font-medium leading-snug">
                 {stats[2].label}
               </p>
             </div>
